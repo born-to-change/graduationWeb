@@ -12,4 +12,6 @@ public interface UserMapper {
     boolean deleteUser(int userId);
 
     User getUserById(int userId);
+
+    User getUserByUserLabel(String userLabel);
 }

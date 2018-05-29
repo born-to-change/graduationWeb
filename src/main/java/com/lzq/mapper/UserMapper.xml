@@ -38,4 +38,11 @@
         delete from user
 		where user_id = #{userId}
     </delete>
+
+
+    <select id="getUserByUserLabel" parameterType="String" resultMap="User">
+        SELECT * FROM user
+        WHERE user_Label = #{userLabel}
+
+    </select>
 </mapper>

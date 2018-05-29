@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../css/nav.css">
+    <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/vue.min.js"></script>
+    <style type="text/css">
+        .task li {
+            position: relative;
+            padding: 10px 0;
+            border-bottom: 1px solid #efefef;
+            list-style: none;
+        }
+
+        .task li:last-child {
+            border-bottom: 0;
+        }
+
+        #custom-book-dialog {
+            background: #afd9ee;
+        }
+
+        .modal-dialog {
+            border: 5px solid #337ab7;
+            background: #337ab7;
+            box-shadow: 10px 10px 5px #888888;
+        }
+
+        .custom-book-button {
+            text-align: center;
+        }
+
+        #save_custom_book {
+            margin-right: 40px;
+        }
+        .book-h5__cover {
+            float: left;
+            position: relative;
+            width: 85px;
+            height: 113px;
+            background-color: #eeece9;
+            border: 1px solid #f0f0f0;
+            border-radius: 1px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="ue-bar">
+    <div class="ue-bar-warp">
+        <div class="ue-bar-logo">
+            <a href="#">
+                <img src="../img/logo.png" width="51" hegith="20" alt="解忧书屋" title="解忧书屋">
+            </a>
+        </div>
+        <div class="ue-bar-nav">
+            <ul>
+                <li class="active"><a href="#">
+                    <em>首页</em>
+                </a></li>
+                <li><a href="#">
+                    <em>自定义书店</em>
+                </a></li>
+                <li><a href="#">
+                    <em>聊天</em>
+                </a></li>
+                <li><a href="#">
+                    <em>个人中心</em>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div>
+
+    <button id = "add_item" @click="handleClick" class="btn btn-primary">新建图书</button>
+
+
+</div>
+
+<div class="modal-dialog" id="custom-book-dialog" style="display:none">
+    <custom_book_dialog>
+
+    </custom_book_dialog>
+    <form id="frmx" enctype="multipart/form-data" class="form-group">
+        <div class="picbox clearfix">
+            <p class="txt">选择图书照片</p>
+            <a class="addphoto">
+                <input type="file" v-bind="imgUpload" name="file1" draggable="false" single accept="image/*">
+            </a>
+            <!--允许file控件接受的文件类型  single  multiple-->
+            <div id="destination"></div>
+        </div>
+
+        <div id="book_info" class="form-group">
+            <label>书名</label>
+            <input type="text" class="form-control" v-model="book_name" placeholder="请输入书名"><br>
+            <label>出版社</label>
+            <input type="text" class="form-control" v-model="publish" placeholder="请输入出版社"><br>
+            <label>定价</label>
+            <input type="text" class="form-control" v-model="price" placeholder="请输入价格"><br>
+            <label>描述</label>
+            <textarea class="form-control" rows="3"
+                      v-model="description" placeholder="请输入描述信息"></textarea><br>
+            <div class="custom-book-button">
+                <button @save="saveBookItem" id="save_custom_book" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="custom_book_list">
+
+
+    <ul class="list-group">
+        <li class="list-group-item" id="book-list-item" v-for="(item,index) in bookList" :key="index">
+                   <!-- :item="item"
+                    :index="index"-->
+
+                <div class="book-h5">
+                    <div class="book-h5__cover">
+                        <img alt="{{ bookName }}" src={{item.bookImage}}>
+                    </div>
+                    <div class="bookInfo-list-item">
+                        <label>书名</label>
+                        <span class="show_bookName">{{item.bookName}}</span><br>
+                        <label>出版社</label>
+                        <span class="show_publication">{{ item.bookPress }}</span><br>
+                        <label>价格</label>
+                        <span class="show_price">{{ item.price }}</span><br>
+                        <label>描述</label>
+                        <span class="show_bookDescription">{{item.bookDescription }}</span><br>
+                        <button @click='handleEdit(index)' class='edit'>编辑</button>
+                        <button @click='bookList.splice(index, 1)' class='del'>删除</button>
+                    </div>
+                </div>
+            </li>
+
+    </ul>
+</div>
+
+
+<script>
+
+    $(document).ready(function() {
+        $('#add_item').click(function(){
+            if($("#custom-book-dialog").css('display')=='none'){
+                $("#custom-book-dialog").css("display","block");
+            }else{
+                $("#custom-book-dialog").css("display","none");
+            }
+        })
+    });
+
+   /* Vue.component("custom_book_dialog",{
+        props: ['item', 'index'],
+        data:{
+            imgUpload: "",
+            book_name: "",
+            publish: "",
+            price: "",
+            description: "",
+        },
+        methods: {
+            save: function () {
+                this.$emit('save', this.index, this.item)
+            },
+            handleEdit: function (index, item) {
+                this.Show = !this.Show;
+                this.imgUpload = item.bookImage;
+                this.book_name = item.bookName;
+
+                this.publish = item.bookPress;
+
+                this.price = item.price;
+
+                this.description = item.bookDescription
+
+            },
+            addBookItem:function () {
+                this.Show = !this.Show;
+            }
+        }
+    })*/
+
+    new Vue({
+        el: '#custom_book_list',
+        data: {
+
+            bookList: searchBooksByKey(),
+
+        //列表
+        methods: {
+
+
+        }
+    })
+</script>
+
+
+</body>
+</html>
+

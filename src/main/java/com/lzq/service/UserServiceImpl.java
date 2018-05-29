@@ -61,10 +61,22 @@ public class UserServiceImpl implements UserService {
             user = userMapper.getUserById(userId);
 
         } catch (Exception e) {
-            log.warn("get user failed", e);
+            log.warn("get user by userId failed", e);
             return null;
         }
         return user;
 
+    }
+
+    public User getUserByUserLabel(String userLabel){
+        User user;
+        try {
+            user = userMapper.getUserByUserLabel(userLabel);
+
+        } catch (Exception e) {
+            log.warn("get user by userLabel failed", e);
+            return null;
+        }
+        return user;
     }
 }

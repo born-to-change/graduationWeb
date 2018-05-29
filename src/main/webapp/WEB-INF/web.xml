@@ -113,15 +113,15 @@
     <servlet-name>springMVC</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
-      <!--指明了配置文件的文件名，不使用默认配置文件名，而使用spring-mvc.xml配置文件。-->
-      <param-name>contextConfigLocation</param-name>
-      <!--其中<param-value>**.xml</param-value> 这里可以使用多种写法-->
-      <!--1、不写,使用默认值:/WEB-INF/<servlet-name>-servlet.xml-->
-      <!--2、<param-value>/WEB-INF/classes/dispatcher-servlet.xml</param-value>-->
-      <!--3、<param-value>classpath*:dispatcher-servlet.xml</param-value>-->
-      <!--4、多个值用逗号分隔-->
-      <param-value>classpath:spring-mvc.xml</param-value>
-    </init-param>
+    <!--指明了配置文件的文件名，不使用默认配置文件名，而使用spring-mvc.xml配置文件。-->
+    <param-name>contextConfigLocation</param-name>
+    <!--其中<param-value>**.xml</param-value> 这里可以使用多种写法-->
+    <!--1、不写,使用默认值:/WEB-INF/<servlet-name>-servlet.xml-->
+    <!--2、<param-value>/WEB-INF/classes/dispatcher-servlet.xml</param-value>-->
+    <!--3、<param-value>classpath*:dispatcher-servlet.xml</param-value>-->
+    <!--4、多个值用逗号分隔-->
+    <param-value>classpath:spring-mvc.xml</param-value>
+  </init-param>
     <!--是启动顺序，让这个Servlet随Servlet容器一起启动。-->
     <load-on-startup>1</load-on-startup>
     <async-supported>true</async-supported>

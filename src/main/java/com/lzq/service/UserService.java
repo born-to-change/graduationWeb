@@ -14,4 +14,6 @@ public interface UserService {
 
     User getUserById(int userId);
 
+    User getUserByUserLabel(String userLabel);
+
 }
