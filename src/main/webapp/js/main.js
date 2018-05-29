@@ -15,6 +15,7 @@ $().ready(function() {
 			},
 		}
 	});
+
 	$("#register_form").validate({
 		rules: {
 			username: "required",
@@ -39,9 +40,9 @@ $().ready(function() {
 			rpassword: {
 				equalTo: "两次密码不一样"
 			},
-			email: {
-				required: "请输入邮箱",
-				email: "请输入有效邮箱"
+			telephone: {
+				required: "请输入手机",
+				email: "请输入有效手机"
 			}
 		}
 	});

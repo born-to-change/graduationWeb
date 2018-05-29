@@ -1,8 +1,7 @@
-$(document).ready(function () {
-    $("#testAjax").click(function () {
+ $("#user_loginIn").click(function () {
         $.ajax({
             type: 'POST',
-            url: "http://127.0.0.1:8081/book/getBooksBySearchKey",
+            url: "http://127.0.0.1:8081/user/inValidUser",
             data: JSON.stringify({
                 userLabel: $("#user_input_userLabel").val(),
                 userPassword: $("#user_input_password").val()
@@ -10,7 +9,11 @@ $(document).ready(function () {
             dataType: "JSON",
             contentType: 'application/json;charset=utf-8',
             success: function (data) {
-                console.log(data)
+                if(data.isSuccess == false){
+                    alert("验证用户信息失败，请重新输入用户名及密码")
+                }else {
+                    window.location.href='./view/main.html';
+                }
 
             },
             error: function (jqXHR) {
@@ -18,4 +21,3 @@ $(document).ready(function () {
             }
         });
     });
-})

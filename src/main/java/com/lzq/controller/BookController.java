@@ -48,6 +48,7 @@ public class BookController {
     @ResponseBody
     public Resullt.Result createBook(@RequestBody String data) {
         Book book = JSON.parseObject(data, Book.class);
+        book.setUserId(UserController.getCurrentUserId());
         return bookService.createBook(book);
     }
 
@@ -56,6 +57,7 @@ public class BookController {
     @ResponseBody
     public Resullt.Result updateBook(@RequestBody String data) {
         Book book = JSON.parseObject(data, Book.class);
+        book.setUserId(UserController.getCurrentUserId());
         return bookService.updateBook(book);
     }
 

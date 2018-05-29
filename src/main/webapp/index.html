@@ -5,14 +5,15 @@
     <title>bootstrap案例</title>
     <!--用百度的静态资源库的cdn安装bootstrap环境-->
     <!-- Bootstrap 核心 CSS 文件 -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <!--font-awesome 核心我CSS 文件-->
     <link href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- 在bootstrap.min.js 之前引入 --
+    <!-- 在bootstrap.min.js 之前引入 -->
+    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
     <!-- Bootstrap 核心 JavaScript 文件 -->
     <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <!--jquery.validate-->
-    <script type="text/javascript" src="./js/jquery-3.1.1.js" ></script>
+    <script type="text/javascript" src="js/jquery.validate.min.js" ></script>
     <style type="text/css">
         body{background: url(/img/4.jpg) no-repeat;background-size: cover;font-size: 16px;}
         .form{background: rgba(255,255,255,0.2);width:400px;margin:100px auto;}
@@ -24,41 +25,13 @@
     </style>
 </head>
 <body>
-<input type = "button" id="testAjax">
-<input type="text" id="testSearch" placeholder="输入书名">
-<div id ="content">
-    $("#testSearch").val()
-</div>
-<script type="text/javascript">
+<!--<input type = "button" id="testAjax">-->
+<!--<input type="text" id="testSearch" placeholder="输入书名">-->
+<!--<div id ="content">-->
+    <!--$("#testSearch").val()-->
+<!--</div>-->
 
-//    $("#testAjax").click(function(){
-//        $.ajax({
-//            type:'POST',
-//            url: "http://127.0.0.1:8081/book/getBooksBySearchKey",
-//            data:JSON.stringify({data : $("#testSearch").val()}) ,
-//            dataType:"JSON",
-//            contentType: 'application/json;charset=utf-8',
-//            success:function (data) {
-//                console.log(data)
-//            },
-//            success: function (data) {
-//                if (data.success) {
-//                    document.getElementById("content").innerHTML=data
-//
-//                    //return data;
-//                } else {
-//                    //document.getElementById("").innerHTML = "哎呀呀，出错了";
-//                    // return "哎呀呀，出错了";
-//                    $("#content").html("哎呀呀，出错了");
-//                }
-//            },
-//            error: function (jqXHR) {
-//                return "哎呀呀，出错了" + jqXHR.status;
-//            }
-//        });
-//    });
 
-</script>
 <!--
     基础知识：
     网格系统:通过行和列布局
@@ -84,7 +57,7 @@
                 </div>
                 <div class="form-group">
                     <i class="fa fa-lock fa-lg"></i>
-                    <input class="form-control required" id = "user_input_password" type="password" placeholder="密码" name="password" maxlength="8"/>
+                    <input class="form-control required" id = "user_input_password" type="password" placeholder="密码" name="password" maxlength="20"/>
                 </div>
                 <div class="form-group">
                     <label class="checkbox">
@@ -106,7 +79,7 @@
             <div class="col-sm-9 col-md-9">
                 <div class="form-group">
                     <i class="fa fa-user fa-lg"></i>
-                    <input class="form-control required" type="text" placeholder="用户名" name="userLabel" autofocus="autofocus"/>
+                    <input class="form-control required" type="text" placeholder="用户名" name="userLabel" id = "register_userLabel" autofocus="autofocus"/>
                 </div>
                 <div class="form-group">
                     <i class="fa fa-lock fa-lg"></i>
@@ -118,7 +91,7 @@
                 </div>
                 <div class="form-group">
                     <i class="fa fa-envelope fa-lg"></i>
-                    <input class="form-control eamil" type="text" placeholder="手机" name="telephone"/>
+                    <input class="form-control telephone" type="text" placeholder="手机" id ="register_telephone" name="telephone"/>
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-success pull-right" id = "user_register" value="注册"/>
@@ -129,5 +102,7 @@
     </div>
 </div>
 <script type="text/javascript" src="./js/main.js" ></script>
+<script type="text/javascript" src="./js/login.js" ></script>
+<script type="text/javascript" src="./js/register.js" ></script>
 </body>
 </html>

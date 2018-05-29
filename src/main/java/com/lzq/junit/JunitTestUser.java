@@ -25,10 +25,10 @@ public class JunitTestUser {
         ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
         UserMapper mapper = ac.getBean(UserMapper.class);
         User user = new User();
-        user.setUserPassword("123456qq");
+        user.setUserPassword("123");
         user.setTelephone("22121744963");
         user.setUserToken("qwqeqwwq1121231231");
-        user.setUserLabel("生变122121");
+        user.setUserLabel("sb");
         mapper.createUser(user);
     }
 

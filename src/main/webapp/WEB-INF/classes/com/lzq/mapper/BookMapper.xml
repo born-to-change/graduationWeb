@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lzq.mapper.BookMapper">
+    <resultMap id="Book" type="com.lzq.pojo.Book">
+        <result property="price" column="price"/>
+        <result property="bookDescription" column="book_description"/>
+        <result property="bookId" column="book_id"/>
+        <result property="bookImage" column="book_image"/>
+        <result property="bookName" column="book_name"/>
+        <result property="bookPress" column="book_press"/>
+        <result property="userId" column="user_id"/>
+
+    </resultMap>
+
+    <insert id="createBook" parameterType="Book">
+        INSERT INTO book
+        (book_id,price,book_description,book_image,book_name,book_press,user_id) VALUES
+        (#{bookId},#{price},#{bookDescription},#{bookImage},#{bookName},#{bookPress},#{userId})
+    </insert>
+
+    <select id="getBooksByUserId" parameterType="Integer" resultMap="Book">
+          SELECT * FROM book
+          WHERE user_id = #{userId}
+
+    </select>
+
+    <select id="getBooksBySearchKey" parameterType="String" resultMap="Book">
+        SELECT * FROM book
+        WHERE book_name like '%${value}%'
+    </select>
+
+
+    <select id="getBookByBookId" parameterType="String" resultMap="Book">
+        SELECT * FROM book
+        WHERE book_id = #{bookId}
+    </select>
+
+    <update id="updateBook" parameterType="Book">
+        UPDATE book
+        set price = #{price},
+        book_description = #{bookDescription},
+        book_image = #{bookImage},
+        book_name = #{bookName},
+        book_press = #{bookPress},
+        user_id = #{userId}
+        WHERE book_id=#{bookId}
+    </update>
+
+    <delete id="deleteBook" parameterType="String">
+        DELETE FROM book
+        WHERE book_id=#{bookId}
+    </delete>
+
+</mapper>

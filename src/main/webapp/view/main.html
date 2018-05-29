@@ -76,7 +76,7 @@
                     <a href="javascript:history.back()" class="top__back"></a>
                     <div id="search-input" class="search-input"><b class="search-input__mi"></b>
                         <input type="text" class="form-control" value="" id="search_box" placeholder="输入书名">
-                        <div class="search-input__btn" v-on:click="doSearch">搜索</div>
+                        <button class="search-input__btn" id = "doSearch">搜索</button>
                     </div>
                 </div>
             </div>
@@ -92,9 +92,11 @@
 
                             <div class="book-h5">
                                 <div class="book-h5__cover">
-                                    <img alt="{{ bookName }}" src={{item.bookImage}}>
+                                    <img alt="{{ item.bookName }}" src={{item.bookImage}}>
                                 </div>
                                 <div class="bookInfo-list-item">
+                                    <span id="bookId">{{item.bookId
+                                        }}</span>
                                     <label>书名</label>
                                     <p class="show_bookName">{{item.bookName}}</p>
                                     <label>出版社</label>
@@ -159,9 +161,10 @@
     </div>
     <hr/>
     <footer>
-        <p>&copy; 2016 - 易兒善</p>
+        <p>&copy; 2018 - 罗卓群</p>
     </footer>
 </div>
+
 
 <script>
     //只能输入正整数过滤器
@@ -198,7 +201,7 @@
        
 
     data: {
-        bookList: searchBooksByKey(),
+        bookList: "",
             totalCount:6,
             //分页数
             arrPageSize: [10, 20, 30, 40],
@@ -226,9 +229,7 @@
 
         },
         methods: {
-            doSearch: function () {
-                this.bookList =searchBooksByKey()
-            },
+
             //分页方法
             showPage: function (pageIndex, $event, forceRefresh) {
 
@@ -301,6 +302,23 @@
         //console.log(vue.arrayData);
         //console.log("==============arrayData end==============");
     });*/
+
+    $("#doSearch").click(function(){
+        $.ajax({
+            type:'POST',
+            url: "http://127.0.0.1:8081/book/getBooksBySearchKey",
+            data:JSON.stringify({data : $("#search_box").val()}) ,
+            dataType:"JSON",
+            contentType: 'application/json;charset=utf-8',
+            success:function (data) {
+                vue.bookList = data
+            },
+            error: function (jqXHR) {
+                return "哎呀呀，出错了" + jqXHR.status;
+            }
+        });
+    });
+
 </script>
 </body>
 </html>
