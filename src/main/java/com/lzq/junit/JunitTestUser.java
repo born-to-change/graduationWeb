@@ -50,4 +50,14 @@ public class JunitTestUser {
         user.setTelephone("22121744963");
         mapper.updateUser(user);
     }
+
+    @Test
+    public void TestSplit(){
+        String[] item = "C:\\fakepath\\s4393610.jpg".split("\\\\");
+
+        System.out.print(item[item.length-1]);
+
+
+    }
+
 }

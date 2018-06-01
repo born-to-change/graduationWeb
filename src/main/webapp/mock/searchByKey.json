@@ -1,0 +1,56 @@
+[
+  {
+    "bookId": "152724400187411008978",
+    "bookName": "数学分析",
+    "bookImage": "/book/textbook",
+    "bookPress": "高教",
+    "userId": 8,
+    "price": 3,
+    "bookDescription": "22112122，2112版"
+  },
+  {
+    "bookId": "152724404239533282537",
+    "bookName": "数学分析",
+    "bookImage": "/book/textbook",
+    "bookPress": "高教",
+    "userId": 6,
+    "price": 3,
+    "bookDescription": "21222"
+  },
+  {
+    "bookId": "152724405027496567600",
+    "bookName": "数学分析",
+    "bookImage": "/book/textbook",
+    "bookPress": "高教",
+    "userId": 11,
+    "price": 3,
+    "bookDescription": "21222"
+  },
+  {
+    "bookId": "152724414992526219679",
+    "bookName": "离散数学",
+    "bookImage": "/book/textbook",
+    "bookPress": "上海科技",
+    "userId": 8,
+    "price": 3,
+    "bookDescription": "21222"
+  },
+  {
+    "bookId": "152724418321122660494",
+    "bookName": "离散数学",
+    "bookImage": "/book/textbook",
+    "bookPress": "上海科技",
+    "userId": 8,
+    "price": 3,
+    "bookDescription": "21222"
+  },
+  {
+    "bookId": "152724476607090938929",
+    "bookName": "离散数学",
+    "bookImage": "/book/textbook",
+    "bookPress": "上海科技",
+    "userId": 8,
+    "price": 3,
+    "bookDescription": "21222"
+  }
+]

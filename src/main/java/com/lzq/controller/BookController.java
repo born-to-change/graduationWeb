@@ -1,11 +1,14 @@
 package com.lzq.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
+import com.google.gson.Gson;
 import com.lzq.common.Resullt;
 import com.lzq.pojo.Book;
 import com.lzq.pojo.User;
 import com.lzq.service.BookService;
+import com.lzq.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,10 +24,15 @@ public class BookController {
     private BookService bookService;
 
     @CrossOrigin(origins = "*", maxAge = 3600)
-    @RequestMapping(value = "/getBooksByUserId/{userId}", method = RequestMethod.GET)
-    public @ResponseBody
-    List<Book> getBooksByUserId(@PathVariable Integer userId) {
-        return bookService.getBooksByUserId(userId);
+    @RequestMapping(value = "/getBooksByUserId", method = RequestMethod.POST)
+    @ResponseBody
+    public List<Book> getBooksByUserId(@RequestBody String data){
+        Map<String,Integer> keyMap = JSON.parseObject(data,Map.class);
+        if(keyMap.get("data").equals(7)) {
+            return bookService.getBooksByUserId(UserController.getCurrentUserId());
+        }else {
+            return bookService.getBooksByUserId(Integer.valueOf(keyMap.get("data")));
+        }
     }
 
     @CrossOrigin(origins = "*", maxAge = 3600)
@@ -47,8 +55,15 @@ public class BookController {
     @RequestMapping(value = "/createBook", method = RequestMethod.POST)
     @ResponseBody
     public Resullt.Result createBook(@RequestBody String data) {
-        Book book = JSON.parseObject(data, Book.class);
+        Map<String,String> keyMap = JSON.parseObject(data,Map.class);
+        Gson gson = new Gson();
+        String bookInfo = gson.toJson(keyMap.get("data"));
+        Book book= gson.fromJson(bookInfo, Book.class);
         book.setUserId(UserController.getCurrentUserId());
+        book.setBookId(IDUtils.createID());
+        String imagePath = book.getBookImage();
+        String[] item = imagePath.split("\\\\");
+        book.setBookImage("../image/bookImg/"+ item[item.length-1]);
         return bookService.createBook(book);
     }
 
@@ -56,15 +71,19 @@ public class BookController {
     @RequestMapping(value = "/updateBook", method = RequestMethod.POST)
     @ResponseBody
     public Resullt.Result updateBook(@RequestBody String data) {
-        Book book = JSON.parseObject(data, Book.class);
+        Map<String,String> keyMap = JSON.parseObject(data,Map.class);
+        Gson gson = new Gson();
+        String bookInfo = gson.toJson(keyMap.get("data"));
+        Book book= gson.fromJson(bookInfo, Book.class);
         book.setUserId(UserController.getCurrentUserId());
         return bookService.updateBook(book);
     }
 
     @CrossOrigin(origins = "*", maxAge = 3600)
-    @RequestMapping(value = "/deleteBook/{bookId}", method = RequestMethod.GET)
-    public @ResponseBody
-    Resullt.Result deleteBook(@PathVariable String bookId) {
-        return bookService.deleteBook(bookId);
+    @RequestMapping(value = "/deleteBook", method = RequestMethod.POST)
+    @ResponseBody
+    public Resullt.Result deleteBook(@RequestBody String data) {
+        Map<String,String> keyMap = JSON.parseObject(data,Map.class);
+        return bookService.deleteBook(keyMap.get("data"));
     }
 }

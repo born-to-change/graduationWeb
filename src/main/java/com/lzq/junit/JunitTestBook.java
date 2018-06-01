@@ -22,12 +22,12 @@ public class JunitTestBook {
         BookMapper mapper = ac.getBean(BookMapper.class);
         Book book = new Book();
         book.setBookId(IDUtils.createID());
-        book.setBookName("离散数学");
+        book.setBookName("幻夜");
         book.setPrice(new BigDecimal(3));
-        book.setBookPress("上海科技");
-        book.setUserId(8);
-        book.setBookDescription("21222");
-        book.setBookImage("/book/textbook");
+        book.setBookPress("南海出版社");
+        book.setUserId(12);
+        book.setBookDescription("21221212122");
+        book.setBookImage("../image/bookImg/s3960322.jpg");
         mapper.createBook(book);
     }
 

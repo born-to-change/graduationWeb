@@ -6,8 +6,14 @@
     <link type="text/css" rel="stylesheet" href="../css/nav.css">
     <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet">
     <script src="../js/jquery.min.js"></script>
-    <script src="../js/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <style type="text/css">
+        #book-image {
+            height: 110px;
+            width: 80px;
+
+        }
+
         .task li {
             position: relative;
             padding: 10px 0;
@@ -36,6 +42,7 @@
         #save_custom_book {
             margin-right: 40px;
         }
+
         .book-h5__cover {
             float: left;
             position: relative;
@@ -58,10 +65,10 @@
         </div>
         <div class="ue-bar-nav">
             <ul>
-                <li class="active"><a href="#">
+                <li><a href="./main.html">
                     <em>首页</em>
                 </a></li>
-                <li><a href="#">
+                <li class="active"><a href="#">
                     <em>自定义书店</em>
                 </a></li>
                 <li><a href="#">
@@ -75,128 +82,181 @@
     </div>
 </div>
 
-<div>
-
-    <button id = "add_item" @click="handleClick" class="btn btn-primary">新建图书</button>
-
-
-</div>
-
-<div class="modal-dialog" id="custom-book-dialog" style="display:none">
-    <custom_book_dialog>
-
-    </custom_book_dialog>
-    <form id="frmx" enctype="multipart/form-data" class="form-group">
-        <div class="picbox clearfix">
-            <p class="txt">选择图书照片</p>
-            <a class="addphoto">
-                <input type="file" v-bind="imgUpload" name="file1" draggable="false" single accept="image/*">
-            </a>
-            <!--允许file控件接受的文件类型  single  multiple-->
-            <div id="destination"></div>
-        </div>
-
-        <div id="book_info" class="form-group">
-            <label>书名</label>
-            <input type="text" class="form-control" v-model="book_name" placeholder="请输入书名"><br>
-            <label>出版社</label>
-            <input type="text" class="form-control" v-model="publish" placeholder="请输入出版社"><br>
-            <label>定价</label>
-            <input type="text" class="form-control" v-model="price" placeholder="请输入价格"><br>
-            <label>描述</label>
-            <textarea class="form-control" rows="3"
-                      v-model="description" placeholder="请输入描述信息"></textarea><br>
-            <div class="custom-book-button">
-                <button @save="saveBookItem" id="save_custom_book" class="btn btn-primary">保存</button>
-            </div>
-        </div>
-    </form>
-</div>
-
 <div id="custom_book_list">
+    <div>
+        <button id="add_item" @click="addBookItem" id="handleClick" class="btn btn-primary">新建图书</button>
 
-
+    </div>
     <ul class="list-group">
-        <li class="list-group-item" id="book-list-item" v-for="(item,index) in bookList" :key="index">
-                   <!-- :item="item"
-                    :index="index"-->
-
-                <div class="book-h5">
-                    <div class="book-h5__cover">
-                        <img alt="{{ bookName }}" src={{item.bookImage}}>
-                    </div>
-                    <div class="bookInfo-list-item">
-                        <label>书名</label>
-                        <span class="show_bookName">{{item.bookName}}</span><br>
-                        <label>出版社</label>
-                        <span class="show_publication">{{ item.bookPress }}</span><br>
-                        <label>价格</label>
-                        <span class="show_price">{{ item.price }}</span><br>
-                        <label>描述</label>
-                        <span class="show_bookDescription">{{item.bookDescription }}</span><br>
-                        <button @click='handleEdit(index)' class='edit'>编辑</button>
-                        <button @click='bookList.splice(index, 1)' class='del'>删除</button>
-                    </div>
+        <li class="list-group-item" id="book-list-item" v-for="(item,index) in bookList" :key="index"
+            :item="item"
+            :index="index">
+            <div class="book-h5">
+                <div class="book-h5__cover">
+                    <img id="book-image" :src=item.bookImage>
                 </div>
-            </li>
-
+                <div class="bookInfo-list-item">
+                    <label>书名</label>
+                    <span class="show_bookName">{{item.bookName}}</span><br>
+                    <label>出版社</label>
+                    <span class="show_publication">{{ item.bookPress }}</span><br>
+                    <label>价格</label>
+                    <span class="show_price">{{ item.price }}</span><br>
+                    <label>描述</label>
+                    <span class="show_bookDescription">{{item.bookDescription }}</span><br>
+                    <button @click='handleEdit(index,item)' class='edit'>编辑</button>
+                    <button @click='deleteBook(index,item.bookId)' class='del'>删除</button>
+                </div>
+            </div>
+        </li>
     </ul>
+
+    <div class="modal-dialog" id="custom-book-dialog" style="display:none">
+        <form id="frmx" enctype="multipart/form-data" class="form-group">
+            <div class="picbox clearfix">
+                <p class="txt">选择图书照片</p>
+                <a class="addphoto">
+                    <input type="file" id="imgUpload" v-model="bookItem.bookImage" name="file1" draggable="false"
+                           single
+                           accept="image/*">
+                </a>
+                <!--允许file控件接受的文件类型  single  multiple-->
+                <div id="destination"></div>
+            </div>
+
+            <div id="book_info" class="form-group">
+                <label>书名</label>
+                <input type="text" class="form-control" v-model="bookItem.bookName" placeholder="请输入书名"><br>
+                <label>出版社</label>
+                <input type="text" class="form-control" v-model="bookItem.bookPress" placeholder="请输入出版社"><br>
+                <label>定价</label>
+                <input type="text" class="form-control" v-model="bookItem.price" placeholder="请输入价格"><br>
+                <label>描述</label>
+                <textarea class="form-control" rows="3"
+                          v-model="bookItem.bookDescription" placeholder="请输入描述信息"></textarea><br>
+                <div class="custom-book-button">
+                    <button @click="saveBookItem()" id="save_custom_book" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
 </div>
 
 
 <script>
 
-    $(document).ready(function() {
-        $('#add_item').click(function(){
-            if($("#custom-book-dialog").css('display')=='none'){
-                $("#custom-book-dialog").css("display","block");
-            }else{
-                $("#custom-book-dialog").css("display","none");
-            }
-        })
-    });
-
-   /* Vue.component("custom_book_dialog",{
-        props: ['item', 'index'],
-        data:{
-            imgUpload: "",
-            book_name: "",
-            publish: "",
-            price: "",
-            description: "",
-        },
-        methods: {
-            save: function () {
-                this.$emit('save', this.index, this.item)
-            },
-            handleEdit: function (index, item) {
-                this.Show = !this.Show;
-                this.imgUpload = item.bookImage;
-                this.book_name = item.bookName;
-
-                this.publish = item.bookPress;
-
-                this.price = item.price;
-
-                this.description = item.bookDescription
-
-            },
-            addBookItem:function () {
-                this.Show = !this.Show;
-            }
-        }
-    })*/
-
-    new Vue({
+    var customBook = new Vue({
         el: '#custom_book_list',
         data: {
+            bookList: [],
+            bookItem: {},
+            editIndex: -1,
+            tempBookImage:""
+        },
 
-            bookList: searchBooksByKey(),
+        mounted: function () {
+            this.getCurrentUserBooks();
+        },
 
         //列表
         methods: {
+            addBookItem: function () {
+                if ($("#custom-book-dialog").css('display') == 'none') {
+                    $("#custom-book-dialog").css("display", "block");
+                } else {
+                    $("#custom-book-dialog").css("display", "none");
+                }
 
+            },
+            saveBookItem: function () {
+                if (customBook.editIndex == -1) {
+                    $.ajax({
+                        type: 'POST',
+                        url: "http://127.0.0.1:8081/book/createBook",
+                        data: JSON.stringify({data: customBook.bookItem}),
+                        dataType: "JSON",
+                        contentType: 'application/json;charset=utf-8',
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function (jqXHR) {
+                            return "哎呀呀，出错了" + jqXHR.status;
+                        }
+                    });
+                } else {
+                    if(customBook.bookItem.bookImage == "") {
+                        customBook.bookItem.bookImage = customBook.tempBookImage;
+                        customBook.bookList[customBook.editIndex] = customBook.bookItem;
+                    }else{
 
+                    }
+                    $("#custom-book-dialog").css('display', 'none')
+                    $.ajax({
+                        type: 'POST',
+                        url: "http://127.0.0.1:8081/book/updateBook",
+                        data: JSON.stringify({data: customBook.bookItem}),
+                        dataType: "JSON",
+                        contentType: 'application/json;charset=utf-8',
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function (jqXHR) {
+                            return "哎呀呀，出错了" + jqXHR.status;
+                        }
+                    });
+                }
+            },
+            handleEdit: function (index, item) {
+                console.log(item, index);
+                customBook.tempBookImage = item.bookImage;
+                customBook.bookItem = item;
+                customBook.bookItem.bookImage = "";
+                customBook.editIndex = index;
+                $("#custom-book-dialog").css('display', '');
+
+            },
+
+            deleteBook: function (index, bookId) {
+                if (confirm("确认删除吗")) {
+                    alert("yes");
+                    customBook.bookList.splice(index, 1);
+                    $.ajax({
+                        type: 'POST',
+                        url: "http://127.0.0.1:8081/book/deleteBook",
+                        data: JSON.stringify({data: bookId}),
+                        dataType: "JSON",
+                        contentType: 'application/json;charset=utf-8',
+                        success: function (data) {
+
+                        },
+                        error: function (jqXHR) {
+                            return "哎呀呀，出错了" + jqXHR.status;
+                        }
+                    });
+                }
+                else {
+                    alert("no")
+                    return;
+                }
+
+            },
+            getCurrentUserBooks: function () {
+                $.ajax({
+                    type: 'POST',
+                    url: "http://127.0.0.1:8081/book/getBooksByUserId",
+                    data: JSON.stringify({data: 7}),
+                    dataType: "JSON",
+                    contentType: 'application/json;charset=utf-8',
+                    success: function (data) {
+                        console.log(data);
+                        customBook.bookList = data;
+                    },
+                    error: function (jqXHR) {
+                        return "哎呀呀，出错了" + jqXHR.status;
+                    }
+                });
+            }
         }
     })
 </script>

@@ -4,10 +4,26 @@
     <meta charset="utf-8"/>
     <title> Test</title>
     <script src="../js/jquery.min.js"></script>
-    <script src="../js/vue.js"></script>
-    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <!--<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+
+    <script type="text/javascript" src="../js/modernizr.custom.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/normalizeBG.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/BG.css">
+    <link rel="stylesheet" href="../css/stylesBG.css">
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="../css/nav.css">
+    <link type="text/css" rel="stylesheet" href="../css/book.css">
+
     <style type="text/css">
+
+        .book-image {
+            width: 80px;
+            height: 100px;
+        }
+
         .search-input__btn {
             display: block;
             line-height: 36px;
@@ -19,29 +35,34 @@
             font-size: 14px;
             color: #666;
         }
+
         .book-h5__cover {
             float: left;
             position: relative;
-            width: 85px;
-            height: 113px;
+            width: 80px;
+            height: 100px;
             background-color: #eeece9;
             border: 1px solid #f0f0f0;
             border-radius: 1px;
             overflow: hidden;
         }
+
         .search-input {
             position: relative;
             margin: 5px 20px 5px 42px;
             height: 35px;
             box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
         }
+
         .search-input .search-input__mi {
             background: url(http://image.read.duokan.com/mfsv2/download/s010/p01TjruXIhgt/PP13pEqhpChuay.png) no-repeat center;
             background-size: 16px 16px;
         }
     </style>
 </head>
+
 <body>
+
 <div class="ue-bar">
     <div class="ue-bar-warp">
         <div class="ue-bar-logo">
@@ -54,11 +75,14 @@
                 <li class="active"><a href="#">
                     <em>首页</em>
                 </a></li>
-                <li><a href="#">
+                <li><a href="./customBookList.custombookList.html">
                     <em>自定义书店</em>
                 </a></li>
-                <li><a href="#">
+                <li><a href="http://localhost:3001/">
                     <em>聊天</em>
+                </a></li>
+                <li><a href="file:///Users/user/Desktop/node-websocket-Chatroom-master/ImChat/index.html">
+                    <em>机器人聊天</em>
                 </a></li>
                 <li><a href="#">
                     <em>个人中心</em>
@@ -68,101 +92,243 @@
     </div>
 </div>
 
-<div class="container body-content">
-    <div id="app" class="form-group">
-            <div class="search">
+<div class="main">
+    <div class="fs-slider" id="fs-slider">
+        <figure>
+            <img src="../image/1.jpg" alt="image01"/>
+            <figcaption>
+                <h3>Eloquence</h3>
+                <p>American apparel flexitarian put a bird on it, mixtape typewriter irony aesthetic. </p>
+            </figcaption>
+        </figure>
 
-                <div class="top">
-                    <a href="javascript:history.back()" class="top__back"></a>
-                    <div id="search-input" class="search-input"><b class="search-input__mi"></b>
-                        <input type="text" class="form-control" value="" id="search_box" placeholder="输入书名">
-                        <button class="search-input__btn" id = "doSearch">搜索</button>
-                    </div>
+        <figure>
+            <img src="../image/2.jpg" alt="image02"/>
+            <figcaption>
+                <h3>Quintessential</h3>
+                <p>Cardigan craft beer mixtape, skateboard forage fixie truffaut messenger bag. </p>
+            </figcaption>
+        </figure>
+
+        <figure>
+            <img src="../image/3.jpg" alt="image03"/>
+            <figcaption>
+                <h3>Surreptitious</h3>
+                <p>Truffaut iphone flexitarian, banh mi thundercats cliche wolf biodiesel gastropub. </p>
+            </figcaption>
+        </figure>
+
+        <figure>
+            <img src="../image/4.jpg" alt="image04"/>
+            <figcaption>
+                <h3>Imbroglio</h3>
+                <p>Scenester fixie pickled, shoreditch fugiat enim craft beer retro mustache.</p>
+            </figcaption>
+        </figure>
+
+        <figure>
+            <img src="../image/5.jpg" alt="image05"/>
+            <figcaption>
+                <h3>Lissome</h3>
+                <p>Aute sunt aliqua do sapiente. Food truck ut sustainable thundercats four loko.</p>
+            </figcaption>
+        </figure>
+    </div><!-- /fs-slider -->
+</div>
+
+<script type="text/javascript" src="../js/jquery.imgslider.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#fs-slider').imgslider();
+    });
+</script>
+
+
+<script type="text/javascript" src="../js/bubbly-bg.js"></script>
+<script type="text/javascript">
+    bubbly();
+    let configs = [
+        {},
+        {
+            colorStart: "#111",
+            colorStop: "#422",
+            bubbleFunc: () = > `hsla(0, 100%, 50%, ${Math.random() * 0.25})`
+    },
+    {
+        colorStart: "#4c004c",
+            colorStop
+    :
+        "#1a001a",
+            bubbleFunc
+    :
+        () =
+    >
+        `hsla(${Math.random() * 360}, 100%, 50%, ${Math.random() * 0.25})`
+    }
+    ,
+    {
+        colorStart: "#fff4e6",
+            colorStop
+    :
+        "#ffe9e4",
+            blur
+    :
+        1,
+            compose
+    :
+        "source-over",
+            bubbleFunc
+    :
+        () =
+    >
+        `hsla(${Math.random() * 50}, 100%, 50%, .3)`
+    }
+    ]
+    ;
+    document.addEventListener("click", function (e) {
+        if (e.target.hasAttribute("data-config-nr")) {
+            document.body.removeChild(document.querySelector("canvas"));
+            bubbly(configs[e.target.getAttribute("data-config-nr")]);
+        }
+    });
+
+    (function () {
+
+        function init() {
+            var speed = 250,
+                easing = mina.easeinout;
+
+            [].slice.call(document.querySelectorAll('#grid > a')).forEach(function (el) {
+                var s = Snap(el.querySelector('svg')), path = s.select('path'),
+                    pathConfig = {
+                        from: path.attr('d'),
+                        to: el.getAttribute('data-path-hover')
+                    };
+
+                el.addEventListener('mouseenter', function () {
+                    path.animate({'path': pathConfig.to}, speed, easing);
+                });
+
+                el.addEventListener('mouseleave', function () {
+                    path.animate({'path': pathConfig.from}, speed, easing);
+                });
+            });
+        }
+
+        init();
+
+    })();
+</script>
+
+<div id="bookInfo" style="display: none">
+    <div class="">
+        <section class="main-card" style="border-bottom:none">
+            <div class="u-book -detail">
+                <div class="book-cover">
+                    <img id="bookInfo_img">
+                </div>
+                <div class="group-form">
+                    <h5 class="title" id="bookInfo_title">书名:</h5>
+                    <p class="author">
+                    <h4 class="author" id="bookInfo_press">出版社:</h4>
+                    </p>
+                    <h4 class="price" id="bookInfo_price">价格:</h4>
+                    <h4 id="bookInfo_description">描述</h4>
+
                 </div>
             </div>
+        </section>
 
-
-                <div id="custom_book_list" >
-
-
-                    <ul class="list-group">
-                        <li class="list-group-item" id="book-list-item" v-for="(item,index) in bookList" :key="index">
-                            <!-- :item="item"
-                             :index="index"-->
-
-                            <div class="book-h5">
-                                <div class="book-h5__cover">
-                                    <img alt="{{ item.bookName }}" src={{item.bookImage}}>
-                                </div>
-                                <div class="bookInfo-list-item">
-                                    <span id="bookId">{{item.bookId
-                                        }}</span>
-                                    <label>书名</label>
-                                    <p class="show_bookName">{{item.bookName}}</p>
-                                    <label>出版社</label>
-                                    <p class="show_publication">{{ item.bookPress }}</p>
-                                    <label>价格</label>
-                                    <p class="show_price">{{ item.price }}</p>
-                                    <label>描述</label>
-                                    <p class="show_bookDescription">{{item.bookDescription }}</p>
-                                </div>
+        <section class="main-card">
+            <div class="u-title">
+                <h1>店主的其他图书</h1>
+            </div>
+            <div class="cnt">
+                <ul class="book-table">
+                    <li v-for="book in author_books">
+                        <div class="u-book -vertical">
+                            <div class="book-cover">
+                                <img title="{{ book.title }}" @src="book.cover">
                             </div>
-                        </li>
+                            <div class="info">
+                                <h3 class="title">{{ book.title }}</h3>
+                            </div>
+                        </div>
+                    </li>
 
-                    </ul>
-                </div>
-
-
-            <div class="page-header">分页</div>
-            <div class="pager" id="pager">
-                    <span class="form-inline">
-                        <select class="form-control" v-model="pagesize" v-on:change="showPage(pageCurrent,$event,true)"
-                                number>
-                            <option v-for="item in arrPageSize" value="{{item}}">{{item}}</option>
-                        </select>
-                    </span>
-                <template v-for="item in pageCount+1">
-                        <span v-if="item==1" class="btn btn-default" v-on:click="showPage(1,$event)">
-                            首页
-                        </span>
-                    <span v-if="item==1" class="btn btn-default" v-on:click="showPage(pageCurrent-1,$event)">
-                            上一页
-                        </span>
-                    <span v-if="item==1" class="btn btn-default" v-on:click="showPage(item,$event)">
-                            {{item}}
-                        </span>
-                    <span v-if="item==1&&item<showPagesStart-1" class="btn btn-default disabled">
-                            ...
-                        </span>
-                    <span v-if="item>1&&item<=pageCount-1&&item>=showPagesStart&&item<=showPageEnd&&item<=pageCount"
-                          class="btn btn-default" v-on:click="showPage(item,$event)">
-                            {{item}}
-                        </span>
-                    <span v-if="item==pageCount&&item>showPageEnd+1" class="btn btn-default disabled">
-                            ...
-                        </span>
-                    <span v-if="item==pageCount&&item!=1" class="btn btn-default" v-on:click="showPage(item,$event)">
-                            {{item}}
-                        </span>
-                    <span v-if="item==pageCount" class="btn btn-default" v-on:click="showPage(pageCurrent+1,$event)">
-                            下一页
-                        </span>
-                    <span v-if="item==pageCount" class="btn btn-default" v-on:click="showPage(pageCount,$event)">
-                            尾页
-                        </span>
-                </template>
-                <span class="form-inline">
-                        <input class="pageIndex form-control" style="width:60px;text-align:center" type="text"
-                               v-model="pageCurrent | onlyNumeric"
-                               v-on:keyup.enter="showPage(pageCurrent,$event,true)"/>
-                    </span>
-                <span>{{pageCurrent}}/{{pageCount}}</span>
+                </ul>
             </div>
+        </section>
     </div>
-    <hr/>
-    <footer>
-        <p>&copy; 2018 - 罗卓群</p>
-    </footer>
+</div>
+
+<script>
+
+    var showBookInfo = function (book) {
+        console.log(book.bookName);
+        document.getElementById("bookInfo_img").src = book.bookImag;
+        // var bookInfo_title_str = $("#bookInfo_title").val() + book.bookName;
+        document.getElementById("bookInfo_title").innerHTML = "书名:" + book.bookName;
+
+        // var bookInfo_press_str = $("#bookInfo_press").val() + item.bookPress;
+        document.getElementById("bookInfo_press").innerHTML = "出版社:" + book.bookPress;
+        document.getElementById("bookInfo_price").innerHTML = "价格:" + book.price;
+        document.getElementById("bookInfo_description").innerHTML = "出版社:" + book.bookDescription;
+
+    }
+</script>
+
+
+<div id="app" class="container body-content">
+
+    <div class="search">
+
+        <div class="top">
+            <a href="javascript:history.back()" class="top__back"></a>
+            <div id="search-input" class="search-input"><b class="search-input__mi"></b>
+                <input type="text" class="form-control" value="" id="search_box" placeholder="输入书名">
+                <button class="search-input__btn" @click="doSearch">搜索</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+
+
+        <div id="custom_book_list">
+
+
+            <ul class="list-group">
+                <li class="list-group-item" id="book-list-item" v-for="(item,index) in bookList" :key="index">
+                    <!-- :item="item"
+                     :index="index"-->
+                    s
+                    <div class="book-h5" @click="getOneBookInfo(item)">
+                        <div class="book-h5__cover">
+                            <img class="book-image" alt="{{ item.bookName }}" :src="item.bookImage">
+                        </div>
+                        <div class="">
+                            <span id="bookId" hidden>{{item.bookId}}</span>
+                            <label>书名</label>
+                            <span class="">{{item.bookName}}</span><br>
+                            <label>出版社</label>
+                            <span class="">{{ item.bookPress }}</span><br>
+                            <label>价格</label>
+                            <span class="">{{ item.price }}</span><br>
+                            <label>描述</label>
+                            <span class="">{{item.bookDescription }}</span>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+        <footer>
+            <p>&copy; 2018 - 罗卓群</p>
+        </footer>
+    </div>
+
+
 </div>
 
 
@@ -180,7 +346,7 @@
             var number = +val.replace(/[^\d]/g, '')
             return isNaN(number) ? 1 : parseFloat(number.toFixed(2))
         }
-    })
+    });
     //模拟获取数据
     var getData = function () {
         var result = [];
@@ -195,130 +361,50 @@
         ready: function () {
             this.arrayDataAll = getData();
             this.totalCount = this.arrayDataAll.length;
-            this.showPage(this.pageCurrent, null, true);
         },
 
-       
 
-    data: {
-        bookList: "",
-            totalCount:6,
-            //分页数
-            arrPageSize: [10, 20, 30, 40],
-            //当前分页数
-            pageCount: 20,
-            //当前页面
-            pageCurrent: 1,
+        data: {
+            bookList: [],
+            totalCount: 10,
             //分页大小
-            pagesize: 10,
-            //显示分页按钮数
-            showPages: 11,
-            //开始显示的分页按钮
-            showPagesStart: 1,
-            //结束显示的分页按钮
-            showPageEnd: 100,
-            //所有数据
-            arrayDataAll: [],
-            //分页数据
-            arrayData: [],
-            //排序字段
-            sortparam: "",
-            //排序方式
-            sorttype: 1,
-
-
+            pageSize: 5,
         },
         methods: {
-
-            //分页方法
-            showPage: function (pageIndex, $event, forceRefresh) {
-
-                if (pageIndex > 0) {
-
-
-                    if (pageIndex > this.pageCount) {
-                        pageIndex = this.pageCount;
+            doSearch: function () {
+                $.ajax({
+                    type: 'POST',
+                    url: "http://127.0.0.1:8081/book/getBooksBySearchKey",
+                    data: JSON.stringify({data: $("#search_box").val()}),
+                    dataType: "JSON",
+                    contentType: 'application/json;charset=utf-8',
+                    success: function (data) {
+                        console.log(data);
+                        vue.bookList = data;
+                        vue.totalCount = data.length;
+                        vue.pageSize = data.length / vue.pageSize + 1
+                    },
+                    error: function (jqXHR) {
+                        return "哎呀呀，出错了" + jqXHR.status;
                     }
-
-                    //判断数据是否需要更新
-                    var currentPageCount = Math.ceil(this.totalCount / this.pagesize);
-                    if (currentPageCount != this.pageCount) {
-                        pageIndex = 1;
-                        this.pageCount = currentPageCount;
-                    }
-                    else if (this.pageCurrent == pageIndex && currentPageCount == this.pageCount && typeof (forceRefresh) == "undefined") {
-                        console.log("not refresh");
-                        return;
-                    }
-
-                    //处理分页点中样式
-                    var buttons = $("#pager").find("span");
-                    for (var i = 0; i < buttons.length; i++) {
-                        if (buttons.eq(i).html() != pageIndex) {
-                            buttons.eq(i).removeClass("active");
-                        }
-                        else {
-                            buttons.eq(i).addClass("active");
-                        }
-                    }
-
-                    //从所有数据中去分页数据
-                    var newPageInfo = [];
-                    for (var i = 0; i < this.pagesize; i++) {
-                        var index = i + (pageIndex - 1) * this.pagesize;
-                        if (index > this.totalCount - 1) break;
-                        newPageInfo[newPageInfo.length] = this.arrayDataAll[index];
-                    }
-                    this.pageCurrent = pageIndex;
-                    this.arrayData = newPageInfo;
-
-                    //计算分页按钮数据
-                    if (this.pageCount > this.showPages) {
-                        if (pageIndex <= (this.showPages - 1) / 2) {
-                            this.showPagesStart = 1;
-                            this.showPageEnd = this.showPages - 1;
-                            console.log("showPage1")
-                        }
-                        else if (pageIndex >= this.pageCount - (this.showPages - 3) / 2) {
-                            this.showPagesStart = this.pageCount - this.showPages + 2;
-                            this.showPageEnd = this.pageCount;
-                            console.log("showPage2")
-                        }
-                        else {
-                            console.log("showPage3")
-                            this.showPagesStart = pageIndex - (this.showPages - 3) / 2;
-                            this.showPageEnd = pageIndex + (this.showPages - 3) / 2;
-                        }
-                    }
-                    console.log("showPagesStart:" + this.showPagesStart + ",showPageEnd:" + this.showPageEnd + ",pageIndex:" + pageIndex);
-                }
-
-            }
-        }
-    });
-   /* vue.$watch("arrayData", function (value) {
-        //console.log("==============arrayData begin==============");
-        //console.log(value==vue.arrayData);
-        //console.log(vue.arrayData);
-        //console.log("==============arrayData end==============");
-    });*/
-
-    $("#doSearch").click(function(){
-        $.ajax({
-            type:'POST',
-            url: "http://127.0.0.1:8081/book/getBooksBySearchKey",
-            data:JSON.stringify({data : $("#search_box").val()}) ,
-            dataType:"JSON",
-            contentType: 'application/json;charset=utf-8',
-            success:function (data) {
-                vue.bookList = data
+                });
             },
-            error: function (jqXHR) {
-                return "哎呀呀，出错了" + jqXHR.status;
-            }
-        });
-    });
 
+            getOneBookInfo: function (item) {
+                var book = item;
+                showBookInfo(book);
+                document.getElementById("bookInfo").style.display = "";
+                document.getElementById("app").style.display = "none";
+
+            },
+        }
+    })
+    vue.$watch("arrayData", function (value) {
+        console.log("==============arrayData begin==============");
+        console.log(value == vue.arrayData);
+        console.log(vue.arrayData);
+        console.log("==============arrayData end==============");
+    })
 </script>
 </body>
 </html>

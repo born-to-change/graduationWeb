@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>漂亮的动态气泡背景js插件bubbly-bg.js</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/normalizeBG.css" />
+    <link rel="stylesheet" type="text/css" href="../css/BG.css">
+    <link rel="stylesheet" href="../css/stylesBG.css">
+    <link type="text/css" rel="stylesheet" href="../css/nav.css">
+
+    <link rel="stylesheet" type="text/css" href="../css/leaveWord.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/nav.css">
+    <!--必要样式-->
+    <link rel="stylesheet" type="text/css" href="../css/component.css"/>
+    <script src="../js/snap.svg-min.js"></script>
+    <script src="../js/vue.js"></script>
+
+    <style>
+        .addLeaveWord{
+           text-align: center;
+
+        }
+        .LW-label{
+            font-family:"Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+            font-size: 20px;
+            text-align: center;
+
+
+        }
+    </style>
+</head>
+
+<body>
+<div class="ue-bar">
+    <div class="ue-bar-warp">
+        <div class="ue-bar-logo">
+            <a href="#">
+                <img src="../img/logo.png" width="51" hegith="20" alt="解忧书屋" title="解忧书屋">
+            </a>
+        </div>
+        <div class="ue-bar-nav">
+            <ul>
+                <li class="active"><a href="#">
+                    <em>首页</em>
+                </a></li>
+                <li><a href="./customBookList.custombookList.html">
+                    <em>自定义书店</em>
+                </a></li>
+                <li><a href="http://localhost:3001/">
+                    <em>聊天</em>
+                </a></li>
+                <li ><a href="./leaveWords.html">
+                    <em>解忧书信</em>
+                </a></li>
+                <li><a href="#">
+                    <em>信息纷享</em>
+                </a></li>
+                <li><a href="#">
+                    <em>个人中心</em>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="addLeaveWord">
+
+    <input type="image"  class="addLeaveWord" width="100px" height="100px" @click="addLWItem" src="../img/addLW.png"/>
+    <p class="LW-label">写解忧书信</p>
+</div>
+<section id="grid" class="grid clearfix">
+    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
+        <figure>
+            <img src="../img/1.png"/>
+            <svg viewBox="0 0 180 320" preserveAspectRatio="none">
+                <path d="M 180,160 0,218 0,0 180,0 z"/>
+            </svg>
+            <figcaption>
+                <p>Two greens tigernut soybean radish.</p>
+                <button>回复</button>
+            </figcaption>
+        </figure>
+    </a>
+    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
+        <figure>
+            <img src="../img/3.png" />
+            <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+            <figcaption>
+                <p>Two greens tigernut soybean radish.</p>
+                <button>回复</button>
+            </figcaption>
+        </figure>
+    </a>
+    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
+        <figure>
+            <img src="../img/5.png" />
+            <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+            <figcaption>
+                <p>Beetroot water spinach okra water.</p>
+                <button>回复</button>
+            </figcaption>
+        </figure>
+    </a>
+    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
+        <figure>
+            <img src="../img/7.png" />
+            <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+            <figcaption>
+                <p>Water spinach arugula pea tatsoi.</p>
+                <button>回复</button>
+            </figcaption>
+        </figure>
+    </a>
+    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
+        <figure>
+            <img src="../img/2.png" />
+            <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+            <figcaption>
+                <p>Pea horseradish azuki bean lettuce.</p>
+                <button>回复</button>
+            </figcaption>
+        </figure>
+    </a>
+    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
+        <figure>
+            <img src="../img/4.png" />
+            <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+            <figcaption>
+                <p>A grape silver beet watercress potato.</p>
+                <button>回复</button>
+            </figcaption>
+        </figure>
+    </a>
+    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
+        <figure>
+            <img src="../img/6.png" />
+            <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+            <figcaption>
+                <p>Chickweed okra pea winter purslane.</p>
+                <button>回复</button>
+            </figcaption>
+        </figure>
+    </a>
+    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
+        <figure>
+            <img src="../img/8.png" />
+            <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
+            <figcaption>
+                <p>Salsify taro catsear garlic gram.</p>
+                <button>回复</button>
+            </figcaption>
+        </figure>
+    </a>
+</section>
+<!--<div class="overlay">-->
+<!--&lt;!&ndash;<h3>点击下面的图片来查看不同的气泡背景效果</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="examples">&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="example"><img data-config-nr="0" src="../img/config0.png"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="example"><img data-config-nr="1" src="../img/config1.png"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="example"><img data-config-nr="2" src="../img/config2.png"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="example"><img data-config-nr="3" src="../img/config3.png"></div>&ndash;&gt;-->
+<!--</div>-->
+<!--</div>-->
+
+<script type="text/javascript" src="../js/bubbly-bg.js"></script>
+<script type="text/javascript">
+    bubbly();
+    let configs = [
+        {},
+        {
+            colorStart: "#111",
+            colorStop: "#422",
+            bubbleFunc: () => `hsla(0, 100%, 50%, ${Math.random() * 0.25})`
+    },
+    {
+        colorStart: "#4c004c",
+            colorStop: "#1a001a",
+        bubbleFunc: () => `hsla(${Math.random() * 360}, 100%, 50%, ${Math.random() * 0.25})`
+    },
+    {
+        colorStart: "#fff4e6",
+            colorStop: "#ffe9e4",
+        blur: 1,
+        compose: "source-over",
+        bubbleFunc: () => `hsla(${Math.random() * 50}, 100%, 50%, .3)`
+    }
+    ];
+    document.addEventListener("click", function (e) {
+        if (e.target.hasAttribute("data-config-nr")) {
+            document.body.removeChild(document.querySelector("canvas"));
+            bubbly(configs[e.target.getAttribute("data-config-nr")]);
+        }
+    });
+
+    (function () {
+
+        function init() {
+            var speed = 250,
+                easing = mina.easeinout;
+
+            [].slice.call(document.querySelectorAll('#grid > a')).forEach(function (el) {
+                var s = Snap(el.querySelector('svg')), path = s.select('path'),
+                    pathConfig = {
+                        from: path.attr('d'),
+                        to: el.getAttribute('data-path-hover')
+                    };
+
+                el.addEventListener('mouseenter', function () {
+                    path.animate({'path': pathConfig.to}, speed, easing);
+                });
+
+                el.addEventListener('mouseleave', function () {
+                    path.animate({'path': pathConfig.from}, speed, easing);
+                });
+            });
+        }
+
+        init();
+
+    })();
+</script>
+
+</body>
+</html>

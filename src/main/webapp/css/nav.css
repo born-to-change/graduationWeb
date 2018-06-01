@@ -18,7 +18,7 @@ div{
 }
 
 a{
-    color: #9F79EE;
+    color: #8470FF;
     text-decoration: none;
     outline: none;
 }
@@ -28,7 +28,7 @@ em{
 }
 
 .ue-bar{
-    background-color: #9F79EE;
+    background-color: #8470FF;
 }
 
 .ue-bar-warp{
@@ -41,7 +41,7 @@ em{
 
 .ue-bar-logo{
     width: 134px;
-    height: 50px;
+    height: 70px;
     float: left;
     padding-right: 10px;
     padding-top: 8px;
@@ -83,6 +83,7 @@ em{
     background: #333;
 }
 
-.ue-bar-nav li a:hover{
+.ue-bar-nav li :hover{
+    height: 70px;
     background: #333;
 }
