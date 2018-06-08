@@ -1,4 +1,5 @@
- $("#user_loginIn").click(function () {
+
+$("#user_loginIn").click(function () {
         $.ajax({
             type: 'POST',
             url: "http://127.0.0.1:8081/user/inValidUser",
@@ -12,6 +13,7 @@
                 if(data.isSuccess == false){
                     alert("验证用户信息失败，请重新输入用户名及密码")
                 }else {
+
                     window.location.href='./view/main.html';
                 }
 

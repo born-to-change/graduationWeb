@@ -1,12 +1,9 @@
 package com.lzq.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.google.common.collect.Maps;
 import com.google.gson.Gson;
-import com.lzq.common.Resullt;
+import com.lzq.common.ResultInfo;
 import com.lzq.pojo.Book;
-import com.lzq.pojo.User;
 import com.lzq.service.BookService;
 import com.lzq.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +24,8 @@ public class BookController {
     @RequestMapping(value = "/getBooksByUserId", method = RequestMethod.POST)
     @ResponseBody
     public List<Book> getBooksByUserId(@RequestBody String data){
-        Map<String,Integer> keyMap = JSON.parseObject(data,Map.class);
-        if(keyMap.get("data").equals(7)) {
-            return bookService.getBooksByUserId(UserController.getCurrentUserId());
-        }else {
+        Map<String,String> keyMap = JSON.parseObject(data,Map.class);
             return bookService.getBooksByUserId(Integer.valueOf(keyMap.get("data")));
-        }
     }
 
     @CrossOrigin(origins = "*", maxAge = 3600)
@@ -54,12 +47,11 @@ public class BookController {
     @CrossOrigin(origins = "*", maxAge = 3600)
     @RequestMapping(value = "/createBook", method = RequestMethod.POST)
     @ResponseBody
-    public Resullt.Result createBook(@RequestBody String data) {
+    public ResultInfo.Result createBook(@RequestBody String data) {
         Map<String,String> keyMap = JSON.parseObject(data,Map.class);
         Gson gson = new Gson();
         String bookInfo = gson.toJson(keyMap.get("data"));
         Book book= gson.fromJson(bookInfo, Book.class);
-        book.setUserId(UserController.getCurrentUserId());
         book.setBookId(IDUtils.createID());
         String imagePath = book.getBookImage();
         String[] item = imagePath.split("\\\\");
@@ -70,19 +62,18 @@ public class BookController {
     @CrossOrigin(origins = "*", maxAge = 3600)
     @RequestMapping(value = "/updateBook", method = RequestMethod.POST)
     @ResponseBody
-    public Resullt.Result updateBook(@RequestBody String data) {
+    public ResultInfo.Result updateBook(@RequestBody String data) {
         Map<String,String> keyMap = JSON.parseObject(data,Map.class);
         Gson gson = new Gson();
         String bookInfo = gson.toJson(keyMap.get("data"));
         Book book= gson.fromJson(bookInfo, Book.class);
-        book.setUserId(UserController.getCurrentUserId());
         return bookService.updateBook(book);
     }
 
     @CrossOrigin(origins = "*", maxAge = 3600)
     @RequestMapping(value = "/deleteBook", method = RequestMethod.POST)
     @ResponseBody
-    public Resullt.Result deleteBook(@RequestBody String data) {
+    public ResultInfo.Result deleteBook(@RequestBody String data) {
         Map<String,String> keyMap = JSON.parseObject(data,Map.class);
         return bookService.deleteBook(keyMap.get("data"));
     }

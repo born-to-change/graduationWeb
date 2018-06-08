@@ -1,6 +1,6 @@
 package com.lzq.service;
 
-import com.lzq.common.Resullt;
+import com.lzq.common.ResultInfo;
 import com.lzq.pojo.Book;
 import org.springframework.stereotype.Repository;
 
@@ -14,9 +14,9 @@ public interface BookService {
 
     List<Book> getBooksBySearchKey(String key);
 
-    Resullt.Result createBook(Book book);
+    ResultInfo.Result createBook(Book book);
 
-    Resullt.Result updateBook(Book book);
+    ResultInfo.Result updateBook(Book book);
 
-    Resullt.Result deleteBook(String bookId);
+    ResultInfo.Result deleteBook(String bookId);
 }

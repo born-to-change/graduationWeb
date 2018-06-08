@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lzq.mapper.LetterMapper">
+    <resultMap id="Letter" type="com.lzq.pojo.Letter">
+        <result property="letterId" column="letter_id"/>
+        <result property="letterTheme" column="letter_theme"/>
+        <result property="letterUid" column="letter_uid"/>
+        <result property="letterContent" column="letter_content"/>
+        <result property="replyUid" column="reply_uid"/>
+        <result property="letterTime" column="letter_time"/>
+        <result property="sendRead" column="send_read"/>
+        <result property="replyRead" column="reply_read"/>
+        <result property="tag" column="tag"/>
+    </resultMap>
+
+    <insert id="createLetter" parameterType="Letter">
+        INSERT INTO letter
+        (letter_theme,letter_uid,letter_content,reply_uid,letter_time,send_read,reply_read,tag) VALUES
+        (#{letterTheme},#{letterUid},#{letterContent},#{replyUid},#{letterTime},#{sendRead},#{replyRead},#{tag})
+    </insert>
+
+    <select id="getRandomNewLettersFilterUser" parameterType="int" resultMap="Letter">
+       SELECT * FROM letter
+        WHERE letter_uid != #{letterUid} and tag = 0
+       ORDER BY  RAND() LIMIT 8
+
+    </select>
+
+    <select id="getLettersByUserId" parameterType="int" resultMap="Letter">
+        SELECT * FROM letter
+        WHERE letter_uid = #{letterUid}
+
+    </select>
+
+    <select id="getLettersByReplyUserId" parameterType="int" resultMap="Letter">
+        SELECT * FROM letter
+        WHERE reply_uid = #{replyUid}
+    </select>
+
+
+    <select id="getLetterByLetterId" parameterType="int" resultMap="Letter">
+        SELECT * FROM letter
+        WHERE letter_id = #{letterId}
+    </select>
+
+    <update id="updateLetter" parameterType="Letter">
+        UPDATE letter
+        set
+        letter_theme = #{letterTheme},
+        letter_uid = #{letterUid},
+        letter_content = #{letterContent},
+        reply_uid = #{replyUid},
+        letter_time = #{letterTime}
+        send_read = #{sendRead},
+        reply_read = #{replyRead},
+        tag = #{replyUid},
+        WHERE letter_id =#{letterId}
+    </update>
+
+    <delete id="deleteLetter" parameterType="int">
+        DELETE FROM letter
+        WHERE letetr_id=#{letterId}
+    </delete>
+
+</mapper>

@@ -1,16 +1,16 @@
 package com.lzq.service;
 
-import com.lzq.common.Resullt;
+import com.lzq.common.ResultInfo;
 import com.lzq.pojo.User;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserService {
-    Resullt.Result createUser(User user);
+    ResultInfo.Result createUser(User user);
 
-    Resullt.Result updateUser(User user);
+    ResultInfo.Result updateUser(User user);
 
-    Resullt.Result deleteUser(int userId);
+    ResultInfo.Result deleteUser(int userId);
 
     User getUserById(int userId);
 

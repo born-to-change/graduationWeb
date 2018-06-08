@@ -10,7 +10,6 @@
 
 
     <context:property-placeholder location="classpath:db.properties"/>
-
     <!-- 数据库连接池 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">

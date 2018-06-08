@@ -1,13 +1,14 @@
 package com.lzq.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.lzq.common.Resullt;
-import com.lzq.mapper.UserMapper;
+import com.lzq.common.ResultInfo;
 import com.lzq.pojo.User;
 import com.lzq.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Timestamp;
 
 @Controller
 @RequestMapping("/hello")
@@ -31,7 +32,7 @@ public class Test {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public Resullt.Result createUser(@RequestBody String data) {
+    public ResultInfo.Result createUser(@RequestBody String data) {
 
         System.out.println("data:" + data);
 
@@ -45,5 +46,6 @@ public class Test {
     User getPerson(@PathVariable int userId) {
         return userService.getUserById(userId);
     }
+
 }
 

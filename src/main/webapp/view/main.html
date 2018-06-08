@@ -2,17 +2,16 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title> Test</title>
+    <title>首页</title>
     <script src="../js/jquery.min.js"></script>
     <!--<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>-->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/demo.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
-
-    <script type="text/javascript" src="../js/modernizr.custom.js"></script>
+    <script src="../js/vue.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/normalizeBG.css"/>
     <link rel="stylesheet" type="text/css" href="../css/BG.css">
     <link rel="stylesheet" href="../css/stylesBG.css">
+    <link rel="stylesheet" type="text/css" href="../css/demo.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <script type="text/javascript" src="../js/modernizr.custom.js"></script>
     <link rel="stylesheet" href="../css/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="../css/nav.css">
     <link type="text/css" rel="stylesheet" href="../css/book.css">
@@ -72,19 +71,22 @@
         </div>
         <div class="ue-bar-nav">
             <ul>
-                <li class="active"><a href="#">
+                <li class="active"><a href="./main.html">
                     <em>首页</em>
                 </a></li>
-                <li><a href="./customBookList.custombookList.html">
+                <li><a href="./custombookList.html">
                     <em>自定义书店</em>
                 </a></li>
                 <li><a href="http://localhost:3001/">
                     <em>聊天</em>
                 </a></li>
-                <li><a href="file:///Users/user/Desktop/node-websocket-Chatroom-master/ImChat/index.html">
-                    <em>机器人聊天</em>
+                <li ><a href="./leaveWords.html">
+                    <em>解忧书信</em>
                 </a></li>
-                <li><a href="#">
+                <li><a href="http://localhost:8080/#/admin/articleList">
+                    <em>我的博客</em>
+                </a></li>
+                <li><a href="./mine.html">
                     <em>个人中心</em>
                 </a></li>
             </ul>
@@ -141,83 +143,6 @@
     $(function () {
         $('#fs-slider').imgslider();
     });
-</script>
-
-
-<script type="text/javascript" src="../js/bubbly-bg.js"></script>
-<script type="text/javascript">
-    bubbly();
-    let configs = [
-        {},
-        {
-            colorStart: "#111",
-            colorStop: "#422",
-            bubbleFunc: () = > `hsla(0, 100%, 50%, ${Math.random() * 0.25})`
-    },
-    {
-        colorStart: "#4c004c",
-            colorStop
-    :
-        "#1a001a",
-            bubbleFunc
-    :
-        () =
-    >
-        `hsla(${Math.random() * 360}, 100%, 50%, ${Math.random() * 0.25})`
-    }
-    ,
-    {
-        colorStart: "#fff4e6",
-            colorStop
-    :
-        "#ffe9e4",
-            blur
-    :
-        1,
-            compose
-    :
-        "source-over",
-            bubbleFunc
-    :
-        () =
-    >
-        `hsla(${Math.random() * 50}, 100%, 50%, .3)`
-    }
-    ]
-    ;
-    document.addEventListener("click", function (e) {
-        if (e.target.hasAttribute("data-config-nr")) {
-            document.body.removeChild(document.querySelector("canvas"));
-            bubbly(configs[e.target.getAttribute("data-config-nr")]);
-        }
-    });
-
-    (function () {
-
-        function init() {
-            var speed = 250,
-                easing = mina.easeinout;
-
-            [].slice.call(document.querySelectorAll('#grid > a')).forEach(function (el) {
-                var s = Snap(el.querySelector('svg')), path = s.select('path'),
-                    pathConfig = {
-                        from: path.attr('d'),
-                        to: el.getAttribute('data-path-hover')
-                    };
-
-                el.addEventListener('mouseenter', function () {
-                    path.animate({'path': pathConfig.to}, speed, easing);
-                });
-
-                el.addEventListener('mouseleave', function () {
-                    path.animate({'path': pathConfig.from}, speed, easing);
-                });
-            });
-        }
-
-        init();
-
-    })();
 </script>
 
 <div id="bookInfo" style="display: none">
@@ -405,6 +330,81 @@
         console.log(vue.arrayData);
         console.log("==============arrayData end==============");
     })
+</script>
+<script type="text/javascript" src="../js/bubbly-bg.js"></script>
+<script type="text/javascript">
+    bubbly();
+    let configs = [
+        {},
+        {
+            colorStart: "#111",
+            colorStop: "#422",
+            bubbleFunc: () = > `hsla(0, 100%, 50%, ${Math.random() * 0.25})`
+    },
+    {
+        colorStart: "#4c004c",
+            colorStop
+    :
+        "#1a001a",
+            bubbleFunc
+    :
+        () =
+    >
+        `hsla(${Math.random() * 360}, 100%, 50%, ${Math.random() * 0.25})`
+    }
+    ,
+    {
+        colorStart: "#fff4e6",
+            colorStop
+    :
+        "#ffe9e4",
+            blur
+    :
+        1,
+            compose
+    :
+        "source-over",
+            bubbleFunc
+    :
+        () =
+    >
+        `hsla(${Math.random() * 50}, 100%, 50%, .3)`
+    }
+    ]
+    ;
+    document.addEventListener("click", function (e) {
+        if (e.target.hasAttribute("data-config-nr")) {
+            document.body.removeChild(document.querySelector("canvas"));
+            bubbly(configs[e.target.getAttribute("data-config-nr")]);
+        }
+    });
+
+    (function () {
+
+        function init() {
+            var speed = 250,
+                easing = mina.easeinout;
+
+            [].slice.call(document.querySelectorAll('#grid > a')).forEach(function (el) {
+                var s = Snap(el.querySelector('svg')), path = s.select('path'),
+                    pathConfig = {
+                        from: path.attr('d'),
+                        to: el.getAttribute('data-path-hover')
+                    };
+
+                el.addEventListener('mouseenter', function () {
+                    path.animate({'path': pathConfig.to}, speed, easing);
+                });
+
+                el.addEventListener('mouseleave', function () {
+                    path.animate({'path': pathConfig.from}, speed, easing);
+                });
+            });
+        }
+
+        init();
+
+    })();
 </script>
 </body>
 </html>

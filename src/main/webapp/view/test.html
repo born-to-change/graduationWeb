@@ -1,69 +1,130 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>HTML5 3D折页立体焦点图代码</title>
+    <meta charset="utf-8">
+    <title> contentEditable=true</title>
+    <link href="../css/comment_reset.css" rel="stylesheet">
+    <script src="../js/xml.js"></script>
+    <style>
+        .main{
+            width: 800px;
+            margin:20px auto;
+        }
+        span{
+            display: inline-block;
+            width: 200px;
+            height: 25px;
+            line-height: 25px;
+            vertical-align: center;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        .tag{
+            font-size: 13px;
+            margin-left: 370px;
+            vertical-align: bottom;
+            text-align: center;
+            margin-bottom: 0;
+        }
+        .text{
+            width: 750px;
+            height: 180px;
+            margin:0 auto;
 
-    <link rel="stylesheet" type="text/css" href="../css/demo.css" />
-    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+            resize:none;
+        }
 
-    <script type="text/javascript" src="../js/modernizr.custom.js"></script>
-    <!--[if lte IE 8]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
+        input{
+            display: inline-block;
+            width: 80px;
+            height: 50px;
+            background: #E2526F;
+            border: 0;
+            margin-left: 670px;
+            margin-top: 10px;
+        }
+        .creatediv{
+            width: 675px;
+            height: 80px;
 
+            border: 1px solid gray;
+            position: relative;
+            margin-top: 10px;
+            padding-left: 75px;
+        }
+        .createinput{
+            width: 80px;
+            height: 30px;
+            position:absolute;
+            right: 5px;
+            bottom:5px;
+        }
+        .createimg{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+        }
+        .createdivs{
+            width:600px;
+            height:50px;
+            position: absolute;
+            top: 15px;
+            left: 85px;
+        }
+    </style>
 </head>
-<body>
 
+<body id="body">
 <div class="main">
-    <div class="fs-slider" id="fs-slider">
-        <figure>
-            <img src="../image/1.jpg" alt="image01" />
-            <figcaption>
-                <h3>Eloquence</h3>
-                <p>American apparel flexitarian put a bird on it, mixtape typewriter irony aesthetic. </p>
-            </figcaption>
-        </figure>
+    <span>你想对楼主说点什么</span>
+    <span class="tag">你最多可以输入30个字符</span>
+    <textarea id="text" cols="30" rows="10" maxlength="30" class="text"></textarea><br>
+    <input type="button" value="发 表" id="ipt">
+    <div id="txt" >
 
-        <figure>
-            <img src="../image/2.jpg" alt="image02" />
-            <figcaption>
-                <h3>Quintessential</h3>
-                <p>Cardigan craft beer mixtape, skateboard forage fixie truffaut messenger bag. </p>
-            </figcaption>
-        </figure>
 
-        <figure>
-            <img src="../image/3.jpg" alt="image03" />
-            <figcaption>
-                <h3>Surreptitious</h3>
-                <p>Truffaut iphone flexitarian, banh mi thundercats cliche wolf biodiesel gastropub. </p>
-            </figcaption>
-        </figure>
-
-        <figure>
-            <img src="../image/4.jpg" alt="image04" />
-            <figcaption>
-                <h3>Imbroglio</h3>
-                <p>Scenester fixie pickled, shoreditch fugiat enim craft beer retro mustache.</p>
-            </figcaption>
-        </figure>
-
-        <figure>
-            <img src="../image/5.jpg" alt="image05" />
-            <figcaption>
-                <h3>Lissome</h3>
-                <p>Aute sunt aliqua do sapiente. Food truck ut sustainable thundercats four loko.</p>
-            </figcaption>
-        </figure>
-    </div><!-- /fs-slider -->
+    </div>
 </div>
 
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/jquery.imgslider.js"></script>
-<script type="text/javascript">
-    $(function() {
-        $( '#fs-slider' ).imgslider();
-    });
-</script>
-
 </body>
+<script>
+    var ipt = document.getElementById("ipt");
+    var txt = document.getElementById('txt');
+    var textarea = document.getElementById("text");
+    ipt.onclick = function(){
+        var textValue = textarea.value.LTrim();
+        textarea.value="";
+        if(textValue.length>0 ){
+            var divs = document.createElement("div");
+            var imgs = document.createElement("img");
+            var ps = document.createElement("p");
+            var inputs = document.createElement("input");
+            divs.setAttribute("class","creatediv");
+            imgs.setAttribute('class',"createimg");
+            ps.setAttribute("class","createdivs");
+            inputs.setAttribute("class","createinput");
+            imgs.src="pic/1.jpg";
+            inputs.type="button";
+            inputs.value="删除";
+            ps.innerHTML=textValue;
+            divs.appendChild(imgs);
+            divs.appendChild(ps);
+            divs.appendChild(inputs);
+            if(txt.children.length==0){
+                txt.appendChild(divs);
+
+            }else{
+                txt.insertBefore(divs,get_firstChild(txt))
+            }
+            inputs.onclick = function(){
+                this.parentNode.parentNode.removeChild(this.parentNode)
+            }
+        }
+
+
+
+    }
+</script>
 </html>

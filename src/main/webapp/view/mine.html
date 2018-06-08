@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link type="text/css" rel="stylesheet" href="../css/nav.css">
+    <title>个人中心</title>
+    <style>
+        img {
+            border: 0;
+        }
+
+        body {
+            background: #f7f7f7;
+            color: #666;
+            font: 12px/150% Arial,Verdana, "microsoft yahei";
+        }
+
+        html, body, div, dl, dt, dd, ol, ul, li, h1, h2, h3, h4, h5, h6, p, blockquote, pre, button, fieldset, form, input, legend, textarea, th, td {
+            margin: 0;
+            padding: 0;
+        }
+
+        article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+
+        audio,canvas,progress,video {
+            display: inline-block;
+            vertical-align: baseline;
+        }
+
+        a {
+            text-decoration: none;
+            color: #08acee;
+        }
+
+        a:active,a:hover {
+            outline: 0;
+        }
+
+        button {
+            outline: 0;
+        }
+
+        mark {
+            color: #000;
+            background: #ff0;
+        }
+
+        small {
+            font-size: 80%;
+        }
+
+        img {
+            border: 0;
+        }
+
+        button,input,optgroup,select,textarea {
+            margin: 0;
+            font: inherit;
+            color: inherit;
+            outline: none;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        i {
+            font-style: normal;
+        }
+
+        a {
+            color: #666;
+        }
+
+        a:hover {
+            color: #eee;
+        }
+
+        em {
+            font-style: normal;
+        }
+
+        h2, h3 {
+            font-family: "microsoft yahei";
+            font-weight: 100;
+        }
+
+
+
+        /* ------------------- */
+        ::-moz-placeholder {
+            color: #9fa3a7;
+        }
+
+        ::-webkit-input-placeholder {
+            color: #9fa3a7;
+        }
+
+        :-ms-input-placeholder {
+            color: #9fa3a7;
+        }
+
+
+        .pc-kk-form{
+            padding:15px 20px;
+        }
+        .pc-kk-form-list{
+            background:#fff;
+            border:1px solid #e5e5e5;
+            border-radius:5px;
+            height:44px;
+            line-height:44px;
+            margin-bottom:10px;
+        }
+        .pc-kk-form-list input{
+            width:100%;
+            border:none;
+            background:none;
+            color:#9fa3a7;
+            font-size:14px;
+            height: 36px;
+            padding: 4px 10px;
+        }
+        .pc-kk-form-list textarea{
+            background:none;
+            border:none;
+            height:60px;
+            padding:10px;
+            resize:none;
+            width:94%;
+            line-height:22px;
+            color:#9fa3a7;
+            font-size:14px;
+        }
+        .nice-select{
+            position: relative;
+            background: #fff url(../images/a2.jpg) no-repeat right center;
+            background-size:18px;
+            width:47%;
+            float:left;
+            border:1px solid #e5e5e5;
+            border-radius:5px;
+            height:44px;
+            line-height:44px;
+        }
+
+        .nice-select ul{
+            width: 100%;
+            display: none;
+            position: absolute;
+            left: -1px;
+            top: 44px;
+            overflow: hidden;
+            background-color: #fff;
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid #b9bcbf;
+            z-index: 9999;
+            border-radius:5px;
+
+        }
+        .nice-select ul li{
+            padding-left:10px;
+        }
+        .nice-select ul li:hover{
+            background:#f8f4f4;
+        }
+        .pc-kk-form-list-clear{
+            background:none;
+            border:none;
+        }
+        .pc-kk-form-btn button{
+            background:#ec5224;
+            color:#fff;
+            border:none;
+            width:100%;
+            height:50px;
+            line-height:50px;
+            font-size:16px;
+            border-radius:50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="ue-bar">
+    <div class="ue-bar-warp">
+        <div class="ue-bar-logo">
+            <a href="#">
+                <img src="../img/logo.png" width="51" hegith="20" alt="解忧书屋" title="解忧书屋">
+            </a>
+        </div>
+        <div class="ue-bar-nav">
+            <ul>
+                <li><a href="./main.html">
+                    <em>首页</em>
+                </a></li>
+                <li><a href="./custombookList.html">
+                    <em>自定义书店</em>
+                </a></li>
+                <li><a href="http://localhost:3001/">
+                    <em>聊天</em>
+                </a></li>
+                <li><a href="./leaveWords.html">
+                    <em>解忧书信</em>
+                </a></li>
+                <li><a href="http://localhost:8080/#/admin/articleList">
+                    <em>我的博客</em>
+                </a></li>
+                <li class="active"><a href="./mine.html">
+                    <em>个人中心</em>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="pc-kk-form">
+    <form action="">
+        <div class="pc-kk-form-list">
+            <input type="text" placeholder="用户名">
+        </div>
+        <div class="pc-kk-form-list pc-kk-form-list-clear">
+            <div class="nice-select" name="nice-select">
+                <input type="text" value="年龄" readonly>
+                <ul>
+                    <li data-value="16">16</li>
+                    <li data-value="17">17</li>
+                    <li data-value="18">18</li>
+                    <li data-value="19">19</li>
+                    <li data-value="20">20</li>
+                    <li data-value="21">21</li>
+                    <li data-value="22">22</li>
+                    <li data-value="23">23</li>
+                    <li data-value="24">24</li>
+                    <li data-value="25">25</li>
+                </ul>
+
+            </div>
+            <div class="nice-select" name="nice-select" style="float:right">
+                <input type="text" value="性别" readonly>
+                <ul>
+                    <li data-value="male">男</li>
+                    <li data-value="female">女</li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="pc-kk-form-list">
+            <input type="email" placeholder="常用邮件">
+        </div>
+        <div class="pc-kk-form-list">
+            <input type="tel" placeholder="手机号">
+        </div>
+        <div class="pc-kk-form-list">
+            <input type="text" placeholder="学号">
+        </div>
+        <div class="pc-kk-form-list pc-kk-form-list-clear">
+            <div class="nice-select" name="nice-select">
+                <input type="text" value="所在宿舍区域" readonly>
+                <ul>
+                    <li data-value="address1">东区</li>
+                    <li data-value="address2">西区</li>
+                    <li data-value="address3">教师公寓</li>
+                </ul>
+
+            </div>
+            <div class="nice-select" name="nice-select" style="float:right">
+                <input type="text" value="学院" readonly>
+                <ul>
+                    <li data-value="人工智能与数据科学学院">人工智能与数据科学学院</li>
+                    <li data-value="电气工程学院">电气工程学院</li>
+                    <li data-value="机械工程学院">机械工程学院</li>
+                    <li data-value="材料科学与工程学院">材料科学与工程学院</li>
+                    <li data-value="化工学院">化工学院</li>
+                    <li data-value="经济管理学院">经济管理学院</li>
+                    <li data-value="土木与交通学院">土木与交通学院</li>
+                    <li data-value="电子信息工程学院">电子信息工程学院</li>
+                    <li data-value="理学院">理学院</li>
+                    <li data-value="能源与环境工程学院">能源与环境工程学院</li>
+                    <li data-value="建筑与艺术设计学院">建筑与艺术设计学院</li>
+                    <li data-value="海洋科学与工程学院">海洋科学与工程学院</li>
+                    <li data-value="马克思主义学院">马克思主义学院</li>
+                    <li data-value="外国语学院">外国语学院</li>
+                    <li data-value="人文与法律学院">人文与法律学院</li>
+                    <li data-value="国际教育学院">国际教育学院</li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="pc-kk-form-list pc-kk-form-list-clear">
+            <div class="nice-select" name="nice-select" style="width:100%">
+                <input type="text" value="年级" readonly>
+                <ul>
+                    <li data-value="Level1">大一</li>
+                    <li data-value="Level2">大二</li>
+                    <li data-value="Level3">大三</li>
+                    <li data-value="Level3">大四</li>
+                </ul>
+            </div>
+        </div>
+        <div class="pc-kk-form-list" style="height:auto">
+            <textarea>个性签名</textarea>
+        </div>
+        <div class="pc-kk-form-btn">
+            <button>提交</button>
+        </div>
+    </form>
+</div>
+
+
+<script type="text/javascript" src="../js/jquery-3.1.1.js"></script>
+
+<script>
+
+    $('[name="nice-select"]').click(function(e){
+
+        $('[name="nice-select"]').find('ul').hide();
+
+        $(this).find('ul').show();
+
+        e.stopPropagation();
+
+    });
+
+    $('[name="nice-select"] li').hover(function(e){
+
+        $(this).toggleClass('on');
+
+        e.stopPropagation();
+
+    });
+
+    $('[name="nice-select"] li').click(function(e){
+
+        var val = $(this).text();
+
+        $(this).parents('[name="nice-select"]').find('input').val(val);
+
+        $('[name="nice-select"] ul').hide();
+
+        e.stopPropagation();
+
+    });
+
+    $(document).click(function(){
+
+        $('[name="nice-select"] ul').hide();
+
+    });
+
+</script>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+    <p>适用浏览器：IE8、360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗.</p>
+    <p>来源：<a href="http://down.admin5.com/" target="_blank">A5源码</a></p>
+</div>
+</body>
+</html>

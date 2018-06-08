@@ -2,18 +2,23 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义书店</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/normalizeBG.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/BG.css">
+    <link rel="stylesheet" href="../css/stylesBG.css">
     <link type="text/css" rel="stylesheet" href="../css/nav.css">
     <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet">
     <script src="../js/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="../js/vue.js"></script>
     <style type="text/css">
         #book-image {
             height: 110px;
             width: 80px;
 
         }
-
         .task li {
             position: relative;
             padding: 10px 0;
@@ -27,6 +32,12 @@
 
         #custom-book-dialog {
             background: #afd9ee;
+            /*osition:fixed;*/
+            /*left:0;top:0;*/
+            width:60%;
+            /*z-index:10;display:none;*/
+            /*opacity:0.7;*/
+            /*filter:alpha(opacity=70);*/
         }
 
         .modal-dialog {
@@ -55,6 +66,7 @@
         }
     </style>
 </head>
+
 <body>
 <div class="ue-bar">
     <div class="ue-bar-warp">
@@ -68,13 +80,19 @@
                 <li><a href="./main.html">
                     <em>首页</em>
                 </a></li>
-                <li class="active"><a href="#">
+                <li class="active"><a href="./custombookList.html">
                     <em>自定义书店</em>
                 </a></li>
-                <li><a href="#">
+                <li><a href="http://localhost:3001/">
                     <em>聊天</em>
                 </a></li>
-                <li><a href="#">
+                <li><a href="./leaveWords.html">
+                    <em>解忧书信</em>
+                </a></li>
+                <li><a href="http://localhost:8080/#/admin/articleList">
+                    <em>我的博客</em>
+                </a></li>
+                <li><a href="./mine.html">
                     <em>个人中心</em>
                 </a></li>
             </ul>
@@ -82,34 +100,11 @@
     </div>
 </div>
 
-<div id="custom_book_list">
+<div id="app">
+
     <div>
         <button id="add_item" @click="addBookItem" id="handleClick" class="btn btn-primary">新建图书</button>
-
     </div>
-    <ul class="list-group">
-        <li class="list-group-item" id="book-list-item" v-for="(item,index) in bookList" :key="index"
-            :item="item"
-            :index="index">
-            <div class="book-h5">
-                <div class="book-h5__cover">
-                    <img id="book-image" :src=item.bookImage>
-                </div>
-                <div class="bookInfo-list-item">
-                    <label>书名</label>
-                    <span class="show_bookName">{{item.bookName}}</span><br>
-                    <label>出版社</label>
-                    <span class="show_publication">{{ item.bookPress }}</span><br>
-                    <label>价格</label>
-                    <span class="show_price">{{ item.price }}</span><br>
-                    <label>描述</label>
-                    <span class="show_bookDescription">{{item.bookDescription }}</span><br>
-                    <button @click='handleEdit(index,item)' class='edit'>编辑</button>
-                    <button @click='deleteBook(index,item.bookId)' class='del'>删除</button>
-                </div>
-            </div>
-        </li>
-    </ul>
 
     <div class="modal-dialog" id="custom-book-dialog" style="display:none">
         <form id="frmx" enctype="multipart/form-data" class="form-group">
@@ -136,23 +131,82 @@
                           v-model="bookItem.bookDescription" placeholder="请输入描述信息"></textarea><br>
                 <div class="custom-book-button">
                     <button @click="saveBookItem()" id="save_custom_book" class="btn btn-primary">保存</button>
+                    <button @click="quitBookItem()" id="quit_custom_book" class="btn btn-primary">退出</button>
                 </div>
             </div>
         </form>
     </div>
 
+    <div id="custom_book_list">
+
+        <ul class="list-group">
+            <li class="list-group-item" id="book-list-item" v-for="(item,index) in bookList" :key="index"
+                :item="item"
+                :index="index">
+                <div class="book-h5">
+                    <div class="book-h5__cover">
+                        <img id="book-image" :src=item.bookImage>
+                    </div>
+                    <div class="bookInfo-list-item">
+                        <label>书名</label>
+                        <span class="show_bookName">{{item.bookName}}</span><br>
+                        <label>出版社</label>
+                        <span class="show_publication">{{ item.bookPress }}</span><br>
+                        <label>价格</label>
+                        <span class="show_price">{{ item.price }}</span><br>
+                        <label>描述</label>
+                        <span class="show_bookDescription">{{item.bookDescription }}</span><br>
+                        <button @click='handleEdit(index,item)' class='edit'>编辑</button>
+                        <button @click='deleteBook(index,item.bookId)' class='del'>删除</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
 </div>
+<script type="text/javascript" src="../js/bubbly-bg.js"></script>
+<script type="text/javascript" src="../js/userStorage.js"></script>
+<script type="text/javascript">
+    bubbly();
+    let configs = [
+        {},
+        {
+            colorStart: "#111",
+            colorStop: "#422",
+            bubbleFunc: () => `hsla(0, 100%, 50%, ${Math.random() * 0.25})`
+    },
+    {
+        colorStart: "#4c004c",
+            colorStop: "#1a001a",
+        bubbleFunc: () => `hsla(${Math.random() * 360}, 100%, 50%, ${Math.random() * 0.25})`
+    },
+    {
+        colorStart: "#fff4e6",
+            colorStop: "#ffe9e4",
+        blur: 1,
+        compose: "source-over",
+        bubbleFunc: () => `hsla(${Math.random() * 50}, 100%, 50%, .3)`
+    }
+    ];
+    document.addEventListener("click", function (e) {
+        if (e.target.hasAttribute("data-config-nr")) {
+            document.body.removeChild(document.querySelector("canvas"));
+            bubbly(configs[e.target.getAttribute("data-config-nr")]);
+        }
+    });
+</script>
 
-
+<script type="text/javascript" src="../js/userStorage.js"></script>
 <script>
 
     var customBook = new Vue({
-        el: '#custom_book_list',
+        el: '#app',
         data: {
             bookList: [],
             bookItem: {},
             editIndex: -1,
-            tempBookImage:""
+            tempBookImage: ""
         },
 
         mounted: function () {
@@ -161,6 +215,9 @@
 
         //列表
         methods: {
+            quitBookItem: function () {
+                $("#custom-book-dialog").css("display", "none");
+            },
             addBookItem: function () {
                 if ($("#custom-book-dialog").css('display') == 'none') {
                     $("#custom-book-dialog").css("display", "block");
@@ -170,7 +227,8 @@
 
             },
             saveBookItem: function () {
-                if (customBook.editIndex == -1) {
+                if (customBook.editIndex === -1) {
+                    customBook.bookItem.userId = getUserId();
                     $.ajax({
                         type: 'POST',
                         url: "http://127.0.0.1:8081/book/createBook",
@@ -179,16 +237,17 @@
                         contentType: 'application/json;charset=utf-8',
                         success: function (data) {
                             console.log(data);
+
                         },
                         error: function (jqXHR) {
                             return "哎呀呀，出错了" + jqXHR.status;
                         }
                     });
                 } else {
-                    if(customBook.bookItem.bookImage == "") {
+                    if (customBook.bookItem.bookImage === "") {
                         customBook.bookItem.bookImage = customBook.tempBookImage;
                         customBook.bookList[customBook.editIndex] = customBook.bookItem;
-                    }else{
+                    } else {
 
                     }
                     $("#custom-book-dialog").css('display', 'none')
@@ -245,7 +304,7 @@
                 $.ajax({
                     type: 'POST',
                     url: "http://127.0.0.1:8081/book/getBooksByUserId",
-                    data: JSON.stringify({data: 7}),
+                    data: JSON.stringify({data: getUserId()}),
                     dataType: "JSON",
                     contentType: 'application/json;charset=utf-8',
                     success: function (data) {
@@ -260,7 +319,6 @@
         }
     })
 </script>
-
 
 </body>
 </html>

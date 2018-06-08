@@ -1,13 +1,8 @@
 package com.lzq.junit;
 
-import com.lzq.common.Resullt;
 import com.lzq.mapper.UserMapper;
 import com.lzq.pojo.User;
-import com.lzq.service.UserService;
-import com.lzq.service.UserServiceImpl;
-import com.lzq.utils.IDUtils;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -21,7 +16,14 @@ public class JunitTestUser {
     }
 
     @Test
-    public void testCreateUser(){
+    public void testGetUserByUserLabel() throws Exception {
+        ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserMapper mapper = ac.getBean(UserMapper.class);
+        mapper.getUserByUserLabel("生变");
+    }
+
+    @Test
+    public void testCreateUser() {
         ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
         UserMapper mapper = ac.getBean(UserMapper.class);
         User user = new User();
@@ -33,14 +35,14 @@ public class JunitTestUser {
     }
 
     @Test
-    public void testDeleteUser(){
+    public void testDeleteUser() {
         ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
         UserMapper mapper = ac.getBean(UserMapper.class);
         mapper.deleteUser(7);
     }
 
     @Test
-    public void testUpdateUser(){
+    public void testUpdateUser() {
         ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
         UserMapper mapper = ac.getBean(UserMapper.class);
         User user = mapper.getUserById(6);
@@ -52,10 +54,10 @@ public class JunitTestUser {
     }
 
     @Test
-    public void TestSplit(){
+    public void TestSplit() {
         String[] item = "C:\\fakepath\\s4393610.jpg".split("\\\\");
 
-        System.out.print(item[item.length-1]);
+        System.out.print(item[item.length - 1]);
 
 
     }

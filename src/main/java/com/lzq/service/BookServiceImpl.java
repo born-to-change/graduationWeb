@@ -1,6 +1,6 @@
 package com.lzq.service;
 
-import com.lzq.common.Resullt;
+import com.lzq.common.ResultInfo;
 import com.lzq.mapper.BookMapper;
 import com.lzq.pojo.Book;
 import lombok.extern.slf4j.Slf4j;
@@ -16,8 +16,8 @@ public class BookServiceImpl implements BookService {
     private BookMapper bookMapper;
 
 
-    public Resullt.Result createBook(Book book) {
-        Resullt.Result ret = Resullt.Result.builder().isFailed(true).build();
+    public ResultInfo.Result createBook(Book book) {
+        ResultInfo.Result ret = ResultInfo.Result.builder().isFailed(true).build();
         try {
             bookMapper.createBook(book);
 
@@ -30,8 +30,8 @@ public class BookServiceImpl implements BookService {
         return ret;
     }
 
-    public Resullt.Result updateBook(Book book) {
-        Resullt.Result ret = Resullt.Result.builder().isFailed(true).build();
+    public ResultInfo.Result updateBook(Book book) {
+        ResultInfo.Result ret = ResultInfo.Result.builder().isFailed(true).build();
         try {
             bookMapper.updateBook(book);
 
@@ -44,8 +44,8 @@ public class BookServiceImpl implements BookService {
         return ret;
     }
 
-    public Resullt.Result deleteBook(String bookId) {
-        Resullt.Result ret = Resullt.Result.builder().isFailed(true).build();
+    public ResultInfo.Result deleteBook(String bookId) {
+        ResultInfo.Result ret = ResultInfo.Result.builder().isFailed(true).build();
         try {
             bookMapper.deleteBook(bookId);
 

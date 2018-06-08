@@ -1,6 +1,6 @@
 package com.lzq.service;
 
-import com.lzq.common.Resullt;
+import com.lzq.common.ResultInfo;
 import com.lzq.mapper.UserMapper;
 import com.lzq.pojo.User;
 import lombok.extern.slf4j.Slf4j;
@@ -13,8 +13,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public Resullt.Result createUser(User user) {
-        Resullt.Result ret = Resullt.Result.builder().isFailed(true).build();
+    public ResultInfo.Result createUser(User user) {
+        ResultInfo.Result ret = ResultInfo.Result.builder().isFailed(true).build();
         try {
             userMapper.createUser(user);
 
@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService {
         return ret;
     }
 
-    public Resullt.Result updateUser(User user) {
-        Resullt.Result ret = Resullt.Result.builder().isFailed(true).build();
+    public ResultInfo.Result updateUser(User user) {
+        ResultInfo.Result ret = ResultInfo.Result.builder().isFailed(true).build();
         try {
             userMapper.updateUser(user);
 
@@ -41,8 +41,8 @@ public class UserServiceImpl implements UserService {
         return ret;
     }
 
-    public Resullt.Result deleteUser(int userId) {
-        Resullt.Result ret = Resullt.Result.builder().isFailed(true).build();
+    public ResultInfo.Result deleteUser(int userId) {
+        ResultInfo.Result ret = ResultInfo.Result.builder().isFailed(true).build();
         try {
             userMapper.deleteUser(userId);
 

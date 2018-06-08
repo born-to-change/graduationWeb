@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>漂亮的动态气泡背景js插件bubbly-bg.js</title>
+    <title>解忧信箱</title>
 
-    <link rel="stylesheet" type="text/css" href="../css/normalizeBG.css" />
+    <link rel="stylesheet" type="text/css" href="../css/floatDemo.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/normalizeBG.css"/>
     <link rel="stylesheet" type="text/css" href="../css/BG.css">
+    <link rel="stylesheet" href="../css/style_letter_edit.css">
     <link rel="stylesheet" href="../css/stylesBG.css">
     <link type="text/css" rel="stylesheet" href="../css/nav.css">
 
@@ -17,23 +19,63 @@
     <link rel="stylesheet" type="text/css" href="../css/component.css"/>
     <script src="../js/snap.svg-min.js"></script>
     <script src="../js/vue.js"></script>
+    <script src="../js/jquery-3.1.1.js"></script>
 
     <style>
-        .addLeaveWord{
-           text-align: center;
-
+        .main {
+            width: 800px;
+            margin: 20px auto;
         }
-        .LW-label{
-            font-family:"Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+
+        .text {
+            color: #4e534f;
+            font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+            width: 750px;
+            height: 180px;
+            margin: 0 auto;
+            font-size: 20px;
+
+            resize: none;
+        }
+
+        .letter-theme {
+            color: #007ace;
+            font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+            font-size: 20px;
+        }
+
+        .change-button {
+            margin-left: 300px;
+            margin-top: 20px;
+        }
+
+        .intro_todo {
+            font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
             font-size: 20px;
             text-align: center;
+        }
 
+        #reply_letter, #quit_read_letter, #send_letter, #cancel_letter {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 5px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
 
+        .addLeaveWord {
+            text-align: center;
+            width: 70px;
+            margin-left: 100px;
         }
     </style>
 </head>
 
 <body>
+
 <div class="ue-bar">
     <div class="ue-bar-warp">
         <div class="ue-bar-logo">
@@ -43,22 +85,22 @@
         </div>
         <div class="ue-bar-nav">
             <ul>
-                <li class="active"><a href="#">
+                <li><a href="./main.html">
                     <em>首页</em>
                 </a></li>
-                <li><a href="./customBookList.custombookList.html">
+                <li><a href="./custombookList.html">
                     <em>自定义书店</em>
                 </a></li>
                 <li><a href="http://localhost:3001/">
                     <em>聊天</em>
                 </a></li>
-                <li ><a href="./leaveWords.html">
+                <li class="active"><a href="./leaveWords.html">
                     <em>解忧书信</em>
                 </a></li>
-                <li><a href="#">
-                    <em>信息纷享</em>
+                <li><a href="http://localhost:8080/#/admin/articleList">
+                    <em>我的博客</em>
                 </a></li>
-                <li><a href="#">
+                <li><a href="./mine.html">
                     <em>个人中心</em>
                 </a></li>
             </ul>
@@ -66,104 +108,175 @@
     </div>
 </div>
 
-<div class="addLeaveWord">
-
-    <input type="image"  class="addLeaveWord" width="100px" height="100px" @click="addLWItem" src="../img/addLW.png"/>
-    <p class="LW-label">写解忧书信</p>
+<div id="container" data-PageSwitch style="display:none">
+    <div class="sections ">
+        <div class="section active" id="section0">
+            <div class="intro">
+                <h1 class="title" id="letter_theme"></h1>
+                <p id="letter_content"></p><br>
+                <label>时间</label>
+                <span id="letter_time"></span><br>
+                <input type="submit" class="btn btn-success pull-right" id="reply_letter" value="回复"/>
+                <input type="submit" class="btn btn-success pull-right" id="quit_read_letter" value="返回"/>
+            </div>
+        </div>
+    </div>
 </div>
-<section id="grid" class="grid clearfix">
-    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
-        <figure>
-            <img src="../img/1.png"/>
-            <svg viewBox="0 0 180 320" preserveAspectRatio="none">
-                <path d="M 180,160 0,218 0,0 180,0 z"/>
-            </svg>
-            <figcaption>
-                <p>Two greens tigernut soybean radish.</p>
-                <button>回复</button>
-            </figcaption>
-        </figure>
-    </a>
-    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
-        <figure>
-            <img src="../img/3.png" />
-            <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
-            <figcaption>
-                <p>Two greens tigernut soybean radish.</p>
-                <button>回复</button>
-            </figcaption>
-        </figure>
-    </a>
-    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
-        <figure>
-            <img src="../img/5.png" />
-            <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
-            <figcaption>
-                <p>Beetroot water spinach okra water.</p>
-                <button>回复</button>
-            </figcaption>
-        </figure>
-    </a>
-    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
-        <figure>
-            <img src="../img/7.png" />
-            <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
-            <figcaption>
-                <p>Water spinach arugula pea tatsoi.</p>
-                <button>回复</button>
-            </figcaption>
-        </figure>
-    </a>
-    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
-        <figure>
-            <img src="../img/2.png" />
-            <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
-            <figcaption>
-                <p>Pea horseradish azuki bean lettuce.</p>
-                <button>回复</button>
-            </figcaption>
-        </figure>
-    </a>
-    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
-        <figure>
-            <img src="../img/4.png" />
-            <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
-            <figcaption>
-                <p>A grape silver beet watercress potato.</p>
-                <button>回复</button>
-            </figcaption>
-        </figure>
-    </a>
-    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
-        <figure>
-            <img src="../img/6.png" />
-            <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
-            <figcaption>
-                <p>Chickweed okra pea winter purslane.</p>
-                <button>回复</button>
-            </figcaption>
-        </figure>
-    </a>
-    <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
-        <figure>
-            <img src="../img/8.png" />
-            <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="M 180,160 0,218 0,0 180,0 z"/></svg>
-            <figcaption>
-                <p>Salsify taro catsear garlic gram.</p>
-                <button>回复</button>
-            </figcaption>
-        </figure>
-    </a>
-</section>
-<!--<div class="overlay">-->
-<!--&lt;!&ndash;<h3>点击下面的图片来查看不同的气泡背景效果</h3>&ndash;&gt;-->
-<!--&lt;!&ndash;<div class="examples">&ndash;&gt;-->
-<!--&lt;!&ndash;<div class="example"><img data-config-nr="0" src="../img/config0.png"></div>&ndash;&gt;-->
-<!--&lt;!&ndash;<div class="example"><img data-config-nr="1" src="../img/config1.png"></div>&ndash;&gt;-->
-<!--&lt;!&ndash;<div class="example"><img data-config-nr="2" src="../img/config2.png"></div>&ndash;&gt;-->
-<!--&lt;!&ndash;<div class="example"><img data-config-nr="3" src="../img/config3.png"></div>&ndash;&gt;-->
-<!--</div>-->
-<!--</div>-->
+
+<div id="reply" style="display: none" class="form-group">
+    <form role="form">
+        <div class="form-group">
+            <textarea class="form-control" rows="10"></textarea>
+        </div>
+    </form>
+</div>
+
+<div id="random-letter-list">
+    <div id="letter_button">
+        <div class="intro_todo">解忧书信，随机获取五封信</div>
+        <input type="image" class="change-button" @click="change_random_letter" src="../images/change.png"/>
+        <span>换一批</span>
+        <input type="image" class="addLeaveWord" @click="addLWItem" src="../img/addLW.png"/>
+        <span>写解忧书信</span>
+    </div>
+    <section id="grid" class="grid clearfix">
+
+        <a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z" v-for="(item,index) of randomLetterList"
+           :key="index"
+           :content="item"
+           :index="index">
+            <figure>
+                <img src="../img/1.png"/>
+                <svg viewBox="0 0 180 320" preserveAspectRatio="none">
+                    <path d="M 180,160 0,218 0,0 180,0 z"/>
+                </svg>
+                <figcaption>
+                    <h2>{{item.letterTheme}}</h2>
+                    <input type="image" width="20px" @click="view(item)" src="../image/view.png"/>
+                    <input type="image" width="20px" @click="reply" src="../image/reply.png"/>
+                </figcaption>
+            </figure>
+        </a>
+    </section>
+    <div class="main" id="write-letter-dialog" style="display: none">
+        <input type="text" class="letter-theme" v-model="write_letter_item.letterTheme" placeholder="输入标题"><br>
+        <textarea id="text"  v-model="write_letter_item.letterContent" cols="30" rows="10" maxlength="30" class="text"></textarea><br>
+        <button @click="saveLetterItem" id="send_letter" class="btn btn-primary">扔入公海</button>
+        <button @click="cancelLetter" id="cancel_letter" class="btn btn-primary">返回</button>
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/pageswitch.js"></script>
+<script src="../js/index.js"></script>
+<script type="text/javascript" src="../js/userStorage.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#reply_letter").click(function () {
+            $("#container").css("display", "none");
+            $("#reply").css("display", "");
+
+        });
+    });
+
+    function loadLetterItem(item) {
+        $("#letter_theme").html(item.letterTheme);
+        $("#letter_content").html(item.letterContent);
+        $("#letter_time").html(getTime(item.letterTime));
+    }
+
+    function getTime(t) {
+        var _time = new Date(t);
+        var year = _time.getFullYear();//2017
+        var month = _time.getMonth() + 1;//7
+        var date = _time.getDate();//10
+        var hour = _time.getHours();//10
+        var minute = _time.getMinutes();//56
+        var second = _time.getSeconds();//15
+        return year + "年" + month + "月" + date + "日   " + hour + ":" + minute + ":" + second;//这里自己按自己需要的格式拼接
+    }
+
+    var letterVue = new Vue({
+        el: '#random-letter-list',
+        data: {
+            randomLetterList: [],
+            write_letter_item:{
+                letterTheme:"",
+                letterContent:"",
+                tag: 0,
+                letterUid: -1,
+
+            }
+
+        },
+
+        mounted: function () {
+            this.getRandomNewLetters();
+        },
+
+        //列表
+        methods: {
+            getRandomNewLetters: function () {
+                $.ajax({
+                    type: 'POST',
+                    url: "http://127.0.0.1:8081/letter/getRandomNewLettersFilterUser",
+                    data: JSON.stringify({data: getUserId()}),
+                    dataType: "JSON",
+                    contentType: 'application/json;charset=utf-8',
+                    success: function (data) {
+                        console.log(data);
+                        letterVue.randomLetterList = data;
+                    },
+                    error: function (jqXHR) {
+                        return "哎呀呀，出错了" + jqXHR.status;
+                    }
+                });
+            },
+            view: function (item) {
+                console.log(item);
+                loadLetterItem(item);
+                $("#container").css("display", "");
+                $("#random-letter-list").css("display", "none");
+            },
+            addLWItem: function () {
+                $("#write-letter-dialog").css("display", "block");
+                $("#letter_button").css("display", "none");
+                $("#grid").css("display", "none");
+            },
+            saveLetterItem: function () {
+                letterVue.write_letter_item.letterUid = getUserId();
+                letterVue.write_letter_item.tag = 0;
+                $.ajax({
+                    type: 'POST',
+                    url: "http://127.0.0.1:8081/letter/createLetter",
+                    data: JSON.stringify({data:letterVue.write_letter_item}),
+                    dataType: "JSON",
+                    contentType: 'application/json;charset=utf-8',
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (jqXHR) {
+                        return "哎呀呀，出错了" + jqXHR.status;
+                    }
+                });
+
+            },
+            cancelLetter: function () {
+                $("#write-letter-dialog").css("display", "none");
+                $("#letter_button").css("display", "");
+                $("#grid").css("display", "");
+            },
+            reply: function () {
+
+            },
+            change_random_letter: function () {
+                letterVue.getRandomNewLetters();
+
+            }
+
+        }
+
+    })
+</script>
 
 <script type="text/javascript" src="../js/bubbly-bg.js"></script>
 <script type="text/javascript">
@@ -174,19 +287,19 @@
             colorStart: "#111",
             colorStop: "#422",
             bubbleFunc: () => `hsla(0, 100%, 50%, ${Math.random() * 0.25})`
-    },
-    {
-        colorStart: "#4c004c",
+        },
+        {
+            colorStart: "#4c004c",
             colorStop: "#1a001a",
-        bubbleFunc: () => `hsla(${Math.random() * 360}, 100%, 50%, ${Math.random() * 0.25})`
-    },
-    {
-        colorStart: "#fff4e6",
+            bubbleFunc: () => `hsla(${Math.random() * 360}, 100%, 50%, ${Math.random() * 0.25})`
+        },
+        {
+            colorStart: "#fff4e6",
             colorStop: "#ffe9e4",
-        blur: 1,
-        compose: "source-over",
-        bubbleFunc: () => `hsla(${Math.random() * 50}, 100%, 50%, .3)`
-    }
+            blur: 1,
+            compose: "source-over",
+            bubbleFunc: () => `hsla(${Math.random() * 50}, 100%, 50%, .3)`
+        }
     ];
     document.addEventListener("click", function (e) {
         if (e.target.hasAttribute("data-config-nr")) {

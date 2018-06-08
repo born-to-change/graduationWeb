@@ -3,7 +3,7 @@ package com.lzq.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.lzq.Model.InvalidUserResult;
-import com.lzq.common.Resullt;
+import com.lzq.common.ResultInfo;
 import com.lzq.pojo.User;
 import com.lzq.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +19,6 @@ public class UserController {
     public static Integer currentUserId;
     @Autowired
     private UserService userService;
-
-    public static Integer getCurrentUserId(){
-        return currentUserId;
-    }
 
     @CrossOrigin(origins = "*", maxAge = 3600)
     @RequestMapping(value = "/inValidUser", method = RequestMethod.POST)
@@ -45,7 +41,7 @@ public class UserController {
     @CrossOrigin(origins = "*", maxAge = 3600)
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     @ResponseBody
-    public Resullt.Result createUser(@RequestBody String data) {
+    public ResultInfo.Result createUser(@RequestBody String data) {
 
         User user = JSON.parseObject(data, User.class);
         return userService.createUser(user);
@@ -54,23 +50,38 @@ public class UserController {
     @CrossOrigin(origins = "*", maxAge = 3600)
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
     @ResponseBody
-    public Resullt.Result updateUser(@RequestBody String data) {
+    public ResultInfo.Result updateUser(@RequestBody String data) {
         User user = JSON.parseObject(data, User.class);
         return userService.updateUser(user);
     }
 
     @CrossOrigin(origins = "*", maxAge = 3600)
-    @RequestMapping(value = "/deleteUser/{userId}", method = RequestMethod.GET)
-    public @ResponseBody
-    Resullt.Result deleteUse(@PathVariable Integer userId) {
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultInfo.Result deleteUser(@RequestBody String data) {
+        Map<String, Integer> keyMap = JSON.parseObject(data, Map.class);
+        int userId = keyMap.get("data");
         return userService.deleteUser(userId);
     }
 
+
     @CrossOrigin(origins = "*", maxAge = 3600)
-    @RequestMapping(value = "/getUserById/{userId}", method = RequestMethod.GET)
-    public @ResponseBody
-    User getUserById(@PathVariable Integer userId) {
+    @RequestMapping(value = "/getUserById", method = RequestMethod.POST)
+    @ResponseBody
+    public User getUserById(@RequestBody String data) {
+        Map<String, Integer> keyMap = JSON.parseObject(data, Map.class);
+        int userId = keyMap.get("data");
         return userService.getUserById(userId);
     }
+
+    @CrossOrigin(origins = "*", maxAge = 3600)
+    @RequestMapping(value = "/getUserByUserLabel", method = RequestMethod.POST)
+    @ResponseBody
+    public User getUserByUserLabel(@RequestBody String data) {
+        Map<String, String> keyMap = JSON.parseObject(data, Map.class);
+        String userLabel = keyMap.get("data");
+        return userService.getUserByUserLabel(userLabel);
+    }
+
 
 }

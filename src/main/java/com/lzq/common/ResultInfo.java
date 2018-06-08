@@ -3,7 +3,7 @@ package com.lzq.common;
 import lombok.Builder;
 import lombok.Data;
 
-public interface Resullt {
+public interface ResultInfo {
     @Builder
     @Data
     class Result {
